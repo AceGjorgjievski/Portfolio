@@ -9,7 +9,6 @@ export default function MobileNav() {
     const [open, setOpen] = useState<boolean>(false);
 
     const toggleDrawer = () => {
-        console.log(open)
         setOpen((prev) => !prev);
     }
 

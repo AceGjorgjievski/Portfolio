@@ -5,10 +5,19 @@ import Link from '@mui/material/Link';
 import { usePathname } from 'next/navigation';
 import MobileNav from './mobileNav';
 import { pages } from './pages';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
 
 
 
 export default function Header() {
+
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const xs = useResponsive("only", "xs");
     const sm = useResponsive("only", "sm");
@@ -16,11 +25,12 @@ export default function Header() {
     const isSmUp = useResponsive("up", "sm");
 
     const pathName = usePathname();
-
+    
+    if (!mounted) return null;
 
     return (
         <>
-            {(isSmUp) && (
+            {(isSmUp) ? (
                 <Container sx={{ display: 'flex', gap: 3, justifyContent: 'center', padding: '20px 10px' }}>
                     {pages.map((page, index) => {
                         return (
@@ -48,10 +58,19 @@ export default function Header() {
                     })}
                     <h1></h1>
                 </Container>
-            )}
-
-            {(!isSmUp) && (
+            ) : (
                 <Container sx={{ display: 'flex', gap: 3, justifyContent: 'end', padding: '20px 10px' }}>
+                    <motion.div
+                        initial={{ opacity: 1 }}
+                        animate={{ 
+                            opacity: 0,
+                            transition: {
+                                delay: 1,
+                                duration: 2,
+                                ease: 'easeOut'
+                            }
+                        }}
+                    />
                     <MobileNav />
                 </Container>
             )}

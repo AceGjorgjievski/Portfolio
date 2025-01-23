@@ -9,7 +9,7 @@ const useStylesPageTransition = makeStyles((theme) => ({
         width: '100%',
         height: '100vh',
         background: '#0f0f0f',
-        'transform-origin': 'origin',
+        'transform-origin': 'right',
     },
     slideOut: {
         position: 'fixed',
@@ -18,7 +18,7 @@ const useStylesPageTransition = makeStyles((theme) => ({
         width: '100%',
         height: '100vh',
         background: '#0f0f0f',
-        'transform-origin': 'top',
+        'transform-origin': 'left',
     }
 }));
 

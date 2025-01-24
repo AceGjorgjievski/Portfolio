@@ -43,7 +43,7 @@ export default function Header() {
                                     fontSize: '18px',
                                     fontWeight: 'bold',
                                     transition: 'color 0.3s ease, border-color 0.3s ease',
-                                    ...(page.url === pathName && {
+                                    ...((page.url === pathName || (pathName === '/' && page.url === '/home')) && {
                                         color: '#22c55e',
                                         borderBottom: '2px solid #22c55e',
                                     }),

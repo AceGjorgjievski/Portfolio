@@ -22,7 +22,7 @@ export default function PageTransition({ children }: Props) {
 
         const timer = setTimeout(() => {
             setShowContent(true);
-        }, 300);
+        }, 200);
 
         return () => clearTimeout(timer);
     }, [pathName]);

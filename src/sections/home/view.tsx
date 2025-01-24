@@ -11,7 +11,7 @@ export default function HomeView() {
 
   return (
     <>
-      <Container sx={{ marginTop: '70px' }}>
+      <Container sx={{ marginTop: '100px' }}>
         {(isSmUp) ? (
           <>
             <Stack

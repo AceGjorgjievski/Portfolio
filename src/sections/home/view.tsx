@@ -1,8 +1,9 @@
 'use client';
 
+import { Photo } from "@/components/photo";
 import { SocialNetworks } from "@/components/social-networks";
 import { useResponsive } from "@/hooks/use-response";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 
 export default function HomeView() {
 
@@ -38,15 +39,17 @@ export default function HomeView() {
                   </p>
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="body1"
                 >
-                  Student at the Faculty of Computer Science and Engineering, <br />
-                  highly skilled in making Web & Mobile applications,<br /> always striving
+                  Student at the Faculty of Computer Science and Engineering,
+                  highly skilled in making Web & Mobile applications, always striving
                   for new skills that will enrich the career ahead of me.
                 </Typography>
               </Container>
 
-              <div>photo</div>
+              <Container>
+                <Photo />
+              </Container>
             </Stack>
           </>
         ) : (
@@ -59,13 +62,13 @@ export default function HomeView() {
             >
               <Container>
                 <Typography
-                  variant="h6"
+                  variant="body2"
                 >
                   Software Engineer
                 </Typography>
                 <Typography
                   sx={{ marginTop: '15px', marginBottom: '15px' }}
-                  variant="h3"
+                  variant="h4"
                 >
                   Hello, I'm<br />
                   <p
@@ -75,20 +78,30 @@ export default function HomeView() {
                   </p>
                 </Typography>
                 <Typography
-                  variant="h6"
+                  variant="body2"
                 >
-                  Student at the Faculty of Computer Science and Engineering, <br />
-                  highly skilled in making Web & Mobile applications,<br /> always striving
+                  Student at the Faculty of Computer Science and Engineering,
+                  highly skilled in making Web & Mobile applications, always striving
                   for new skills that will enrich the career ahead of me.
                 </Typography>
+                <Container
+                  sx={{ marginBottom: '40px' }}
+                >
+                  <SocialNetworks />
+                </Container>
+                <Container
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Photo />
+                </Container>
               </Container>
-              <div>photo</div>
             </Stack>
           </>
         )}
-        <Container>
-          <SocialNetworks/>
-        </Container>
       </Container>
     </>
   );

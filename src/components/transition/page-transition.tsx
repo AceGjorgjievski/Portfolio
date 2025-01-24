@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from "next/navigation";
 import useStylesPageTransition from "./style";
@@ -14,18 +14,6 @@ export default function PageTransition({ children }: Props) {
     const pathName = usePathname();
     const classes = useStylesPageTransition();
 
-    const [showContent, setShowContent] = useState(false);
-
-    //delay for showing the children after the transition is being rendered
-    useEffect(() => {
-        setShowContent(false);
-
-        const timer = setTimeout(() => {
-            setShowContent(true);
-        }, 200);
-
-        return () => clearTimeout(timer);
-    }, [pathName]);
 
     return (
         <>
@@ -47,7 +35,16 @@ export default function PageTransition({ children }: Props) {
                         transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
                     />
 
-                    {showContent && children}
+                    <motion.div
+                        initial={{opacity: 0}}
+                        animate={{
+                            opacity: 1,
+                            transition: { delay: 1, duration: 0.4, ease: 'easeIn' }
+                        }}
+                    >
+                    {children}
+                    </motion.div>
+
                 </div>
             </AnimatePresence>
         </>

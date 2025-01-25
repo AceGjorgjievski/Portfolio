@@ -30,7 +30,7 @@ export default function DrawerMobile({ open, toggleDrawer }: Props) {
 
     const DrawerList = (
         <Box sx={{width: '200px'}}>
-            <List>
+            <List sx={{marginTop: '20px'}}>
                 {pages.map((page, index) => (
                     <ListItem key={index}>
                         <ListItemButton>

@@ -31,7 +31,13 @@ export default function Header() {
     return (
         <>
             {(isSmUp) ? (
-                <Container sx={{ display: 'flex', gap: 3, justifyContent: 'center', padding: '20px 10px' }}>
+                <Container sx={{ 
+                    display: 'flex', 
+                    gap: 3, 
+                    justifyContent: 'center', 
+                    padding: '20px 10px' , 
+                    marginTop: '25px'
+                    }}>
                     {pages.map((page, index) => {
                         return (
                             <Link
@@ -59,7 +65,7 @@ export default function Header() {
                     <h1></h1>
                 </Container>
             ) : (
-                <Container sx={{ display: 'flex', gap: 3, justifyContent: 'end', padding: '20px 10px' }}>
+                <Container sx={{ display: 'flex', gap: 3, justifyContent: 'end', padding: '20px 20px' }}>
                     <motion.div
                         initial={{ opacity: 1 }}
                         animate={{ 

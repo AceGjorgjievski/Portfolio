@@ -81,11 +81,15 @@ export default function HomeView() {
                     alignItems: 'center'
                   }}
                 >
-                  {/* //todo in photo to pass how much the delay should be */}
                   <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
                 </Container>
                 <Typography
-                  variant="body2"
+                  variant='h6'
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                  }}
                 >
                   Software Engineer
                 </Typography>

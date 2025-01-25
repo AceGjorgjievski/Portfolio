@@ -53,6 +53,11 @@ export default function HomeView() {
                   highly skilled in making Web & Mobile applications, always striving
                   for new skills that will enrich the career ahead of me.
                 </Typography>
+                <Container
+                  sx={{ marginBottom: '40px' }}
+                >
+                  <SocialNetworks />
+                </Container>
               </Container>
 
               <Container>

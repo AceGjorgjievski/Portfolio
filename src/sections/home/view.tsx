@@ -4,10 +4,18 @@ import { Photo } from "@/components/photo";
 import { SocialNetworks } from "@/components/social-networks";
 import { useResponsive } from "@/hooks/use-response";
 import { Container, Stack, Typography } from "@mui/material";
+import { useState } from "react";
 
 export default function HomeView() {
 
   const isSmUp = useResponsive("up", "sm");
+  const isMdUp = useResponsive("up", "md");
+
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
+  const onRenderComplete = () => {
+    setIsFirstRender(false);
+  };
 
 
   return (
@@ -29,7 +37,7 @@ export default function HomeView() {
                 </Typography>
                 <Typography
                   sx={{ marginTop: '15px', marginBottom: '15px' }}
-                  variant="h3"
+                  variant={isMdUp ? 'h3' : 'h4'}
                 >
                   Hello, I'm<br />
                   <p
@@ -48,7 +56,7 @@ export default function HomeView() {
               </Container>
 
               <Container>
-                <Photo />
+              <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
               </Container>
             </Stack>
           </>
@@ -61,6 +69,16 @@ export default function HomeView() {
               alignItems="center"
             >
               <Container>
+              <Container
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  {/* //todo in photo to pass how much the delay should be */}
+                  <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
+                </Container>
                 <Typography
                   variant="body2"
                 >
@@ -89,15 +107,7 @@ export default function HomeView() {
                 >
                   <SocialNetworks />
                 </Container>
-                <Container
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Photo />
-                </Container>
+                
               </Container>
             </Stack>
           </>

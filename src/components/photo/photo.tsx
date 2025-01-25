@@ -2,8 +2,12 @@ import { useResponsive } from "@/hooks/use-response";
 import Image from "next/image";
 import { motion } from 'framer-motion';
 
+type Props = {
+    animate: boolean;
+    onRenderComplete: () => void;
+}
 
-export default function Photo() {
+export default function Photo({animate, onRenderComplete}: Props) {
 
     const isSmUp = useResponsive("up", "sm");
     const isMdUp = useResponsive("up", "md");
@@ -14,23 +18,20 @@ export default function Photo() {
     return (
         <>
             <motion.div
-                initial={{opacity: 0}}
-                animate={{
-                    opacity: 1,
-                    transition: { delay: 1, duration: 0.4, ease: 'easeIn' }
-                }}
-                style={{
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    mixBlendMode: 'lighten'
-                }}
+                initial={{opacity: animate ? 0 : 1}}
+                animate={
+                    animate
+                    ? { opacity: 1, transition: { delay: 1.5, duration: 0.3, ease: 'easeIn' } }
+                    : {}
+                }
+                onAnimationComplete={onRenderComplete}
             >
                 <Image
                     src="/profile/lepotan_puta_2.png"
                     width={size}
                     height={size}
                     priority
-                    style={{ borderRadius: '50%', mixBlendMode: 'lighten' }}
+                    style={{ borderRadius: '50%', }}
                     alt="Profile Photo"
                 />
             </motion.div>

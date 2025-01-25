@@ -89,6 +89,7 @@ export default function HomeView() {
                     display: 'flex',
                     justifyContent: 'center', 
                     alignItems: 'center', 
+                    marginTop: '20px'
                   }}
                 >
                   Software Engineer

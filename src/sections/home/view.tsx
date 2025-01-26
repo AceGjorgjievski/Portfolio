@@ -2,6 +2,7 @@
 
 import { Photo } from "@/components/photo";
 import { SocialNetworks } from "@/components/social-networks";
+import { Stats } from "@/components/stats";
 import { useResponsive } from "@/hooks/use-response";
 import { Container, Stack, Typography } from "@mui/material";
 import { useState } from "react";
@@ -47,7 +48,7 @@ export default function HomeView() {
                   </p>
                 </Typography>
                 <Typography
-                  variant="body1"
+                  variant="body2"
                 >
                   Student at the Faculty of Computer Science and Engineering,
                   highly skilled in making Web & Mobile applications, always striving
@@ -63,6 +64,9 @@ export default function HomeView() {
               <Container>
               <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
               </Container>
+            </Stack>
+            <Stack>
+              <Stats/>
             </Stack>
           </>
         ) : (
@@ -119,6 +123,9 @@ export default function HomeView() {
                 </Container>
                 
               </Container>
+            </Stack>
+            <Stack>
+              <Stats/>
             </Stack>
           </>
         )}

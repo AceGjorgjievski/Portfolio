@@ -62,11 +62,11 @@ export default function HomeView() {
               </Container>
 
               <Container>
-              <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
+                <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
               </Container>
             </Stack>
             <Stack>
-              <Stats/>
+              <Stats />
             </Stack>
           </>
         ) : (
@@ -78,7 +78,7 @@ export default function HomeView() {
               alignItems="center"
             >
               <Container>
-              <Container
+                <Container
                   sx={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -91,8 +91,8 @@ export default function HomeView() {
                   variant='h6'
                   sx={{
                     display: 'flex',
-                    justifyContent: 'center', 
-                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     marginTop: '20px'
                   }}
                 >
@@ -121,11 +121,11 @@ export default function HomeView() {
                 >
                   <SocialNetworks />
                 </Container>
-                
+
               </Container>
             </Stack>
             <Stack>
-              <Stats/>
+              <Stats />
             </Stack>
           </>
         )}

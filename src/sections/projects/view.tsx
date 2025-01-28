@@ -33,50 +33,50 @@ export default function ProjectsView() {
                                 alignItems="center"
                             >
                                 <Container
-                sx={{
-                    display: 'flex', // Apply flexbox to arrange children in a row
-                    flexDirection: 'row', // Ensure children are placed side by side
-                    justifyContent: 'space-between', // Add space between them
-                    alignItems: 'flex-start', // Align them at the top
-                    gap: '20px', // Optional: Add spacing between the two containers
-                }}
-            >
-                <Container
-                    sx={{
-                        flex: '1', // Allow it to take equal space
-                        marginTop: (isMdUp ? '80px' : isSmUp ? '0px' : ''),
-                        // marginTop: '80px',
-                    }}
-                >
-                    <Typography
-                        variant="h2"
-                    >
-                        {project.number}
-                    </Typography>
-                    <Typography
-                        variant="h4"
-                    >
-                        {project.category} project
-                    </Typography>
-                    <p>
-                        {project.desciption}
-                    </p>
-                    <ProjectStack project={project} />
-                    <hr />
-                    <ProjectExternalLink project={project} />
-                </Container>
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'flex-start',
+                                        gap: '20px',
+                                    }}
+                                >
+                                    <Container
+                                        sx={{
+                                            flex: '1',
+                                            marginTop: (isMdUp ? '80px' : isSmUp ? '0px' : ''),
+                                            // marginTop: '80px',
+                                        }}
+                                    >
+                                        <Typography
+                                            variant="h2"
+                                        >
+                                            {project.number}
+                                        </Typography>
+                                        <Typography
+                                            variant="h4"
+                                        >
+                                            {project.category} project
+                                        </Typography>
+                                        <p>
+                                            {project.desciption}
+                                        </p>
+                                        <ProjectStack project={project} />
+                                        <hr />
+                                        <ProjectExternalLink project={project} />
+                                    </Container>
 
-                <Container
-                    sx={{
-                        flex: '1', // Allow it to take equal space
-                        display: 'flex',
-                        justifyContent: 'center', // Center the Slider horizontally
-                        alignItems: 'center', // Center the Slider vertically
-                    }}
-                >
-                    <Slider setActiveProject={setActiveProject} isSmUp={isSmUp} />
-                </Container>
-            </Container>
+                                    <Container
+                                        sx={{
+                                            flex: '1',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                        }}
+                                    >
+                                        <Slider setActiveProject={setActiveProject} isSmUp={isSmUp} />
+                                    </Container>
+                                </Container>
                             </Stack>
                         </>
                     ) : (

@@ -45,7 +45,6 @@ export default function ProjectsView() {
                                         sx={{
                                             flex: '1',
                                             marginTop: (isMdUp ? '80px' : isSmUp ? '0px' : ''),
-                                            // marginTop: '80px',
                                         }}
                                     >
                                         <Typography

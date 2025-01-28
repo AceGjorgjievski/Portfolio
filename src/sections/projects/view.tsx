@@ -3,7 +3,7 @@
 import { Container, Stack, Typography } from "@mui/material";
 import { useResponsive } from "@/hooks/use-response";
 import { useState } from "react";
-import { projects } from "@/sections/projects/types";
+import { projects } from "@/sections/projects/projects";
 import ProjectExternalLink from "./project-external-link";
 import ProjectStack from "./project-stack";
 import Slider from "./slider";

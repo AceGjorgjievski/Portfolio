@@ -1,6 +1,6 @@
 'use-client';
 
-import { projects } from "@/sections/projects/types";
+import { projects } from "@/sections/projects/projects";
 
 import { Box, Container } from "@mui/material";
 import Image from "next/image";

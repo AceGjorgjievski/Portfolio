@@ -1,6 +1,7 @@
 
 
 export const experience = {
+    id: 'experience',
     icon: "",
     title: "My Experience",
     description: "Lorem Ipsum",
@@ -8,7 +9,7 @@ export const experience = {
         {
             company: "MVP Masters",
             position: "Junior Software Engineer - Internship",
-            diration: "Oct 2024 - Dec 2024",
+            duration: "Oct 2024 - Dec 2024",
             responsibility: "Developing new features and ongoing improvements for the trgo24.mk website using clean & maintanable code by minimals.cc"
         },
         {
@@ -21,6 +22,7 @@ export const experience = {
 };
 
 export const education = {
+    id: 'education',
     icon: "",
     title: "My Education",
     description: "Lorem Ipsum",
@@ -41,6 +43,8 @@ export const education = {
 };
 
 export const skills = {
+    id: 'skills',
+    icon: '',
     title: "My Skills",
     description: "",
     skillList: [
@@ -92,6 +96,8 @@ export const skills = {
 };
 
 export const aboutMe = {
+    id: 'about Me',
+    icon: '',
     title: "About Me",
     description: "Lorem Ispum",
     info: [

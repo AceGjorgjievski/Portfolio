@@ -8,7 +8,20 @@ export const experience = {
     items: [
         {
             company: "MVP Masters",
-            position: "Junior Software Engineer - Internship",
+            position: "Software Engineer - Internship",
+            duration: "Oct 2024 - Dec 2024",
+            responsibility: "Developing new features and ongoing improvements for the trgo24.mk website using clean & maintanable code by minimals.cc"
+        },
+        {
+            company: "DDCOM",
+            position: "IT Support",
+            duration: "Aug 2019",
+            responsibility: "Installing Windows Operating Systems"
+        }
+        ,
+        {
+            company: "MVP Masters",
+            position: "Software Engineer - Internship",
             duration: "Oct 2024 - Dec 2024",
             responsibility: "Developing new features and ongoing improvements for the trgo24.mk website using clean & maintanable code by minimals.cc"
         },
@@ -118,7 +131,7 @@ export const aboutMe = {
             fieldValue: "Skopje"
         },
         {
-            fieldName: "Language",
+            fieldName: "Languages",
             fieldValue: "English, Macedonian"
         }
     ]

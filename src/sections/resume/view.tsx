@@ -121,7 +121,29 @@ export default function ResumeView() {
                                                         }
                                                     }}
                                                 >
-                                                    My Experience
+                                                    {selectedId === 'experience' && (
+                                                        <>
+                                                            My Experience
+                                                        </>
+                                                    )}
+
+                                                    {selectedId === 'skills' && (
+                                                        <>
+                                                            My Skills
+                                                        </>
+                                                    )}
+                                                    
+                                                    {selectedId === 'education' && (
+                                                        <>
+                                                            My Education
+                                                        </>
+                                                    )}
+                                                    {selectedId === 'about Me' && (
+                                                        <>
+                                                            About Me
+                                                        </>
+                                                    )}
+
                                                 </Typography>
                                             </Container>
                                             <Container>

@@ -1,10 +1,11 @@
 'use client';
 
 import { useResponsive } from "@/hooks/use-response";
-import { Container, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Container, Grid, Paper, Stack, Typography } from "@mui/material";
 
 import { experience, skills, aboutMe, education } from "./resume-data";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ResumeView() {
 
@@ -54,11 +55,11 @@ export default function ResumeView() {
                                             maxWidth: { xs: '200px', sm: '300px', md: '400px', lg: '400px' },
                                         }}
                                     >
-                                        <Grid 
-                                            container 
-                                            justifyContent="center" 
-                                            spacing={3} 
-                                            sx={{ 
+                                        <Grid
+                                            container
+                                            justifyContent="center"
+                                            spacing={3}
+                                            sx={{
                                                 padding: '10px',
                                             }}
                                         >
@@ -132,7 +133,7 @@ export default function ResumeView() {
                                                             My Skills
                                                         </>
                                                     )}
-                                                    
+
                                                     {selectedId === 'education' && (
                                                         <>
                                                             My Education
@@ -149,11 +150,11 @@ export default function ResumeView() {
                                             <Container>
                                                 {selectedId === 'experience' && (
                                                     <>
-                                                        <Grid 
-                                                            container 
-                                                            spacing={2} 
-                                                            sx={{ 
-                                                                width: '100%', 
+                                                        <Grid
+                                                            container
+                                                            spacing={2}
+                                                            sx={{
+                                                                width: '100%',
                                                             }}
                                                         >
                                                             {experience.items.map((item, index) => (
@@ -222,13 +223,64 @@ export default function ResumeView() {
                                                 )}
 
                                                 {selectedId === 'skills' && (
-                                                    <ul>
-                                                        {skills.skillList.map((skill, index) => (
-                                                            <li key={index}>
-                                                                {skill.name}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                                    <>
+                                                        <Grid
+                                                            container
+                                                            spacing={2}
+                                                            sx={{
+                                                                width: '100%',
+                                                            }}
+                                                        >
+                                                            {skills.skillList.map((skill, index) => (
+                                                                <Grid
+                                                                    item
+                                                                    xs={12} sm={12} md={12} lg={6}
+                                                                    key={index}
+                                                                    sx={{
+                                                                        display: 'flex',
+                                                                        justifyContent: 'center'
+                                                                    }}
+                                                                >
+                                                                    <Paper
+                                                                        elevation={3}
+                                                                        sx={{
+                                                                            padding: 2,
+                                                                            width: '100%',
+                                                                            maxWidth: '300px',
+                                                                            height: '100%',
+                                                                            maxHeight: '150px',
+                                                                            backgroundColor: '#25252e',
+                                                                            color: 'white',
+                                                                            display: 'flex',
+                                                                            flexDirection: 'column',
+                                                                            justifyContent: 'center',
+                                                                            alignItems: 'center',
+                                                                            textAlign: 'center',
+                                                                        }}
+                                                                    >
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            sx={{
+                                                                                color: 'cyan',
+                                                                                fontSize: '12px'
+                                                                            }}> 
+                                                                            <Image
+                                                                                src={skill.icon}
+                                                                                alt={skill.name}
+                                                                                width={0}
+                                                                                height={0}
+                                                                                style={{
+                                                                                    width: isSmUp ? "90px" : "50px",
+                                                                                    height: isSmUp ? "90px" : "50px"
+                                                                                }}
+                                                                            />
+
+                                                                        </Typography>
+                                                                    </Paper>
+                                                                </Grid>
+                                                            ))}
+                                                        </Grid>
+                                                    </>
                                                 )}
 
                                                 {selectedId === 'education' && (
@@ -268,7 +320,7 @@ export default function ResumeView() {
                                 sx={{
                                     border: '2px solid #22c55e',
                                     width: '100%', // Ensures proper alignment
-                                    padding: '20px', 
+                                    padding: '20px',
                                 }}
                             >
                                 <Container

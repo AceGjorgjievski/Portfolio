@@ -62,51 +62,52 @@ export const skills = {
     description: "",
     skillList: [
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
             name: "Java"
         },
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
             name: "Spring Boot"
         },
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg",
             name: "C#"
         },
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
             name: "ASP.NET Core"
         },
         {
-            icon: '',
-            name: "React js"
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+            name: "React.js"
         },
         {
-            icon: '',
-            name: "Next js"
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+            name: "Next.js"
         },
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg",
             name: "Firebase"
         },
         {
-            icon: '',
-            name: "Nest js"
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
+            name: "Nest.js"
         },
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg",
             name: "Flutter"
         },
         {
-            icon: '',
+            icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
             name: "Git"
         },
         {
-            icond: '',
+            icon: "/icons/skills/sony-vegas-logo-icon.svg", 
             name: "Sony Vegas Pro"
         }
     ]
 };
+
 
 export const aboutMe = {
     id: 'about Me',

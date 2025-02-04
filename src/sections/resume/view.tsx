@@ -281,15 +281,79 @@ export default function ResumeView() {
                                                 )}
 
                                                 {selectedId === 'education' && (
-                                                    <ul>
-                                                        {education.items.map((education, index) => (
-                                                            <li key={index}>
-                                                                <strong>{education.institution}</strong> - {education.major} <br />
-                                                                {education.duration} <br />
-                                                                {education.degree}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                                    <>
+                                                        <Grid
+                                                            container
+                                                            spacing={2}
+                                                            sx={{
+                                                                width: '100%',
+                                                            }}
+                                                        >
+                                                            {education.items.map((item, index) => (
+                                                                <Grid
+                                                                    item
+                                                                    xs={12} sm={12} md={12} lg={6}
+                                                                    key={index}
+                                                                    sx={{
+                                                                        display: 'flex',
+                                                                        justifyContent: 'center'
+                                                                    }}
+                                                                >
+                                                                    <Paper
+                                                                        elevation={3}
+                                                                        sx={{
+                                                                            padding: 2,
+                                                                            width: '100%',
+                                                                            maxWidth: '300px',
+                                                                            height: '100%',
+                                                                            maxHeight: '150px',
+                                                                            backgroundColor: '#25252e',
+                                                                            color: 'white',
+                                                                            display: 'flex',
+                                                                            flexDirection: 'column',
+                                                                            justifyContent: 'center',
+                                                                            alignItems: 'center',
+                                                                            textAlign: 'center',
+                                                                        }}
+                                                                    >
+                                                                        <Typography
+                                                                            variant="body2"
+                                                                            sx={{
+                                                                                color: 'cyan',
+                                                                                fontSize: '12px'
+                                                                            }}>
+                                                                            {item.duration}
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            variant="h6"
+                                                                            sx={{
+                                                                                color: '#22c55e',
+                                                                                fontWeight: 'bold',
+                                                                                fontSize: {
+                                                                                    sm: '17px',
+                                                                                    md: '20px',
+                                                                                    lg: '17px'
+                                                                                }
+                                                                            }}>
+                                                                            {item.institution}
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            variant="body1"
+                                                                            sx={{
+                                                                                color: 'cyan',
+                                                                                fontSize: {
+                                                                                    sm: '15px',
+                                                                                    md: '17px',
+                                                                                    lg: '12px'
+                                                                                }
+                                                                            }}>
+                                                                            {item.degree}
+                                                                        </Typography>
+                                                                    </Paper>
+                                                                </Grid>
+                                                            ))}
+                                                        </Grid>
+                                                    </>
                                                 )}
 
                                                 {selectedId === 'about Me' && (

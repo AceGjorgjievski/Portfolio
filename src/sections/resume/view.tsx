@@ -147,7 +147,12 @@ export default function ResumeView() {
 
                                                 </Typography>
                                             </Container>
-                                            <Container>
+                                            <Container
+                                                sx={{
+                                                    height: '320px',
+                                                    overflowY: 'auto',
+                                                }}
+                                            >
                                                 {selectedId === 'experience' && (
                                                     <>
                                                         <Grid
@@ -238,13 +243,13 @@ export default function ResumeView() {
                                                                     key={index}
                                                                     sx={{
                                                                         display: 'flex',
-                                                                        justifyContent: 'center'
+                                                                        justifyContent: 'center',
                                                                     }}
                                                                 >
                                                                     <Paper
                                                                         elevation={3}
                                                                         sx={{
-                                                                            padding: 2,
+                                                                            padding: 4,
                                                                             width: '100%',
                                                                             maxWidth: '300px',
                                                                             height: '100%',
@@ -258,24 +263,16 @@ export default function ResumeView() {
                                                                             textAlign: 'center',
                                                                         }}
                                                                     >
-                                                                        <Typography
-                                                                            variant="body2"
-                                                                            sx={{
-                                                                                color: 'cyan',
-                                                                                fontSize: '12px'
-                                                                            }}> 
                                                                             <Image
                                                                                 src={skill.icon}
                                                                                 alt={skill.name}
                                                                                 width={0}
                                                                                 height={0}
                                                                                 style={{
-                                                                                    width: isSmUp ? "90px" : "50px",
-                                                                                    height: isSmUp ? "90px" : "50px"
+                                                                                    width: isSmUp ? "70px" : "50px",
+                                                                                    height: isSmUp ? "70px" : "50px"
                                                                                 }}
                                                                             />
-
-                                                                        </Typography>
                                                                     </Paper>
                                                                 </Grid>
                                                             ))}

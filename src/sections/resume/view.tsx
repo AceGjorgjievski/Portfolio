@@ -263,16 +263,16 @@ export default function ResumeView() {
                                                                             textAlign: 'center',
                                                                         }}
                                                                     >
-                                                                            <Image
-                                                                                src={skill.icon}
-                                                                                alt={skill.name}
-                                                                                width={0}
-                                                                                height={0}
-                                                                                style={{
-                                                                                    width: isSmUp ? "70px" : "50px",
-                                                                                    height: isSmUp ? "70px" : "50px"
-                                                                                }}
-                                                                            />
+                                                                        <Image
+                                                                            src={skill.icon}
+                                                                            alt={skill.name}
+                                                                            width={0}
+                                                                            height={0}
+                                                                            style={{
+                                                                                width: isSmUp ? "70px" : "50px",
+                                                                                height: isSmUp ? "70px" : "50px"
+                                                                            }}
+                                                                        />
                                                                     </Paper>
                                                                 </Grid>
                                                             ))}
@@ -357,13 +357,85 @@ export default function ResumeView() {
                                                 )}
 
                                                 {selectedId === 'about Me' && (
-                                                    <ul>
-                                                        {aboutMe.info.map((item, index) => (
-                                                            <li key={index}>
-                                                                <strong>{item.fieldName}:</strong> {item.fieldValue}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                                    <>
+                                                        <Stack
+                                                            direction="column"
+                                                            sx={{
+                                                                width: {
+                                                                    sm: '320px',
+                                                                    md: '470px',
+                                                                    lg: '450px'
+                                                                },
+                                                                overflowX: 'hidden'
+                                                            }}
+                                                        >
+                                                            {aboutMe.info.map((item, index) => (
+                                                                <Grid
+                                                                    container
+                                                                    key={index}
+                                                                    spacing={2}
+                                                                    sx={{
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        padding: '8px 0',
+                                                                        borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+                                                                        overflow: 'hidden',
+                                                                        flexWrap: 'nowrap'
+                                                                    }}
+                                                                >
+                                                                    <Grid
+                                                                        item
+                                                                        xs={5}
+                                                                        sx={{
+                                                                            textAlign: 'left',
+                                                                        }}
+                                                                    >
+                                                                        <Typography
+                                                                            variant="h6"
+                                                                            sx={{
+                                                                                color: '#22c55e',
+                                                                                fontWeight: 'bold',
+                                                                                fontSize: {
+                                                                                    sm: '17px',
+                                                                                    md: '17px',
+                                                                                    lg: '20px'
+                                                                                }
+                                                                            }}
+                                                                        >
+                                                                            {item.fieldName}
+                                                                        </Typography>
+                                                                    </Grid>
+
+                                                                    <Grid
+                                                                        item
+                                                                        xs={7}
+                                                                        sx={{
+                                                                            textAlign: 'left',
+                                                                            wordBreak: 'break-word',
+                                                                            overflow: 'hidden',
+                                                                        }}
+                                                                    >
+                                                                        <Typography
+                                                                            variant="body1"
+                                                                            sx={{
+                                                                                color: 'cyan',
+                                                                                fontSize: {
+                                                                                    xs: '11px',
+                                                                                    sm: '12px',
+                                                                                    md: '15px',
+                                                                                    lg: '16px'
+                                                                                },
+                                                                                wordWrap: 'break-word',
+                                                                                whiteSpace: 'normal'
+                                                                            }}
+                                                                        >
+                                                                            {item.fieldValue}
+                                                                        </Typography>
+                                                                    </Grid>
+                                                                </Grid>
+                                                            ))}
+                                                        </Stack>
+                                                    </>
                                                 )}
                                             </Container>
                                         </Stack>

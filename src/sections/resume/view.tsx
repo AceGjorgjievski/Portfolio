@@ -582,18 +582,60 @@ export default function ResumeView() {
                                             </>
                                         )}
 
+                                        {selectedId === 'skills' && (
+                                            <Grid
+                                                container
+                                                spacing={2}
+                                                sx={{
+                                                    width: '100%',
+                                                }}
+                                            >
+                                                {skills.skillList.map((skill, index) => (
+                                                    <Grid
+                                                        item
+                                                        xs={12} sm={12} md={12} lg={6}
+                                                        key={index}
+                                                        sx={{
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                        }}
+                                                    >
+                                                        <Paper
+                                                            elevation={3}
+                                                            sx={{
+                                                                padding: 4,
+                                                                width: '100%',
+                                                                maxWidth: '300px',
+                                                                height: '100%',
+                                                                maxHeight: '150px',
+                                                                backgroundColor: '#25252e',
+                                                                color: 'white',
+                                                                display: 'flex',
+                                                                flexDirection: 'column',
+                                                                justifyContent: 'center',
+                                                                alignItems: 'center',
+                                                                textAlign: 'center',
+                                                            }}
+                                                        >
+                                                            <Image
+                                                                src={skill.icon}
+                                                                alt={skill.name}
+                                                                width={0}
+                                                                height={0}
+                                                                style={{
+                                                                    width: isSmUp ? "70px" : "50px",
+                                                                    height: isSmUp ? "70px" : "50px"
+                                                                }}
+                                                            />
+                                                        </Paper>
+                                                    </Grid>
+                                                ))}
+                                            </Grid>
+                                        )}
                                     </Container>
 
 
-                                    {selectedId === 'skills' && (
-                                        <ul>
-                                            {skills.skillList.map((skill, index) => (
-                                                <li key={index}>
-                                                    {skill.name}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+
 
                                     {selectedId === 'education' && (
                                         <ul>

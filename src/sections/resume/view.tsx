@@ -503,54 +503,119 @@ export default function ResumeView() {
                                             textAlign: 'center',
                                             padding: '20px',
                                             borderRadius: '8px',
-                                            border: '2px solid #22c55e',
                                             color: 'white',
+                                            height: '320px',
+                                            overflowY: 'auto',
                                         }}
                                     >
                                         {selectedId === 'experience' && (
-                                            <ul>
-                                                {experience.items.map((item, index) => (
-                                                    <li key={index}>
-                                                        <strong>{item.company}</strong> - {item.position} <br />
-                                                        {item.responsibility} <br />
-                                                        {item.duration}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                            <>
+                                                <Grid
+                                                    container
+                                                    spacing={2}
+                                                    sx={{
+                                                        width: '100%',
+                                                    }}
+                                                >
+                                                    {experience.items.map((item, index) => (
+                                                        <Grid
+                                                            item
+                                                            xs={12} sm={12} md={12} lg={6}
+                                                            key={index}
+                                                            sx={{
+                                                                display: 'flex',
+                                                                justifyContent: 'center'
+                                                            }}
+                                                        >
+                                                            <Paper
+                                                                elevation={3}
+                                                                sx={{
+                                                                    padding: 2,
+                                                                    width: '100%',
+                                                                    maxWidth: '300px',
+                                                                    height: '100%',
+                                                                    maxHeight: '150px',
+                                                                    backgroundColor: '#25252e',
+                                                                    color: 'white',
+                                                                    display: 'flex',
+                                                                    flexDirection: 'column',
+                                                                    justifyContent: 'center',
+                                                                    alignItems: 'center',
+                                                                    textAlign: 'center',
+                                                                }}
+                                                            >
+                                                                <Typography
+                                                                    variant="body2"
+                                                                    sx={{
+                                                                        color: 'cyan',
+                                                                        fontSize: '12px'
+                                                                    }}>
+                                                                    {item.duration}
+                                                                </Typography>
+                                                                <Typography
+                                                                    variant="h6"
+                                                                    sx={{
+                                                                        color: '#22c55e',
+                                                                        fontWeight: 'bold',
+                                                                        fontSize: {
+                                                                            sm: '17px',
+                                                                            md: '20px'
+                                                                        }
+                                                                    }}>
+                                                                    {item.company}
+                                                                </Typography>
+                                                                <Typography
+                                                                    variant="body1"
+                                                                    sx={{
+                                                                        color: 'cyan',
+                                                                        fontSize: {
+                                                                            sm: '15px',
+                                                                            md: '17px'
+                                                                        }
+                                                                    }}>
+                                                                    {item.position}
+                                                                </Typography>
+                                                            </Paper>
+                                                        </Grid>
+                                                    ))}
+                                                </Grid>
+                                            </>
                                         )}
 
-                                        {selectedId === 'skills' && (
-                                            <ul>
-                                                {skills.skillList.map((skill, index) => (
-                                                    <li key={index}>
-                                                        {skill.name}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-
-                                        {selectedId === 'education' && (
-                                            <ul>
-                                                {education.items.map((education, index) => (
-                                                    <li key={index}>
-                                                        <strong>{education.institution}</strong> - {education.major} <br />
-                                                        {education.duration} <br />
-                                                        {education.degree}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-
-                                        {selectedId === 'about Me' && (
-                                            <ul>
-                                                {aboutMe.info.map((item, index) => (
-                                                    <li key={index}>
-                                                        <strong>{item.fieldName}:</strong> {item.fieldValue}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
                                     </Container>
+
+
+                                    {selectedId === 'skills' && (
+                                        <ul>
+                                            {skills.skillList.map((skill, index) => (
+                                                <li key={index}>
+                                                    {skill.name}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+
+                                    {selectedId === 'education' && (
+                                        <ul>
+                                            {education.items.map((education, index) => (
+                                                <li key={index}>
+                                                    <strong>{education.institution}</strong> - {education.major} <br />
+                                                    {education.duration} <br />
+                                                    {education.degree}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+
+                                    {selectedId === 'about Me' && (
+                                        <ul>
+                                            {aboutMe.info.map((item, index) => (
+                                                <li key={index}>
+                                                    <strong>{item.fieldName}:</strong> {item.fieldValue}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </Container>
                             </Stack>
                         </>

@@ -17,8 +17,7 @@ export const experience = {
             position: "IT Support",
             duration: "Aug 2019",
             responsibility: "Installing Windows Operating Systems"
-        }
-        ,
+        },
         {
             company: "MVP Masters",
             position: "Software Engineer - Internship",

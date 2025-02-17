@@ -362,7 +362,7 @@ export default function ResumeView() {
                                                             direction="column"
                                                             sx={{
                                                                 width: {
-                                                                    sm: '320px',
+                                                                    sm: '300px',
                                                                     md: '470px',
                                                                     lg: '450px'
                                                                 },
@@ -378,7 +378,7 @@ export default function ResumeView() {
                                                                         display: 'flex',
                                                                         alignItems: 'center',
                                                                         padding: '8px 0',
-                                                                        borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+                                                                        borderBottom: '1px solid rgba(255, 255, 255, 0.5)',
                                                                         overflow: 'hidden',
                                                                         flexWrap: 'nowrap'
                                                                     }}
@@ -387,7 +387,7 @@ export default function ResumeView() {
                                                                         item
                                                                         xs={5}
                                                                         sx={{
-                                                                            textAlign: 'left',
+                                                                            textAlign: 'right',
                                                                         }}
                                                                     >
                                                                         <Typography
@@ -410,7 +410,7 @@ export default function ResumeView() {
                                                                         item
                                                                         xs={7}
                                                                         sx={{
-                                                                            textAlign: 'left',
+                                                                            textAlign: 'right',
                                                                             wordBreak: 'break-word',
                                                                             overflow: 'hidden',
                                                                         }}
@@ -451,14 +451,12 @@ export default function ResumeView() {
                                 justifyContent="center"
                                 alignItems="center"
                                 sx={{
-                                    border: '2px solid #22c55e',
-                                    width: '100%', // Ensures proper alignment
+                                    width: '100%',
                                     padding: '20px',
                                 }}
                             >
                                 <Container
                                     sx={{
-                                        border: '2px solid #22c55e',
                                         padding: '20px'
                                     }}
                                 >
@@ -632,32 +630,155 @@ export default function ResumeView() {
                                                 ))}
                                             </Grid>
                                         )}
+
+                                        {selectedId === 'education' && (
+                                            <Grid
+                                                container
+                                                spacing={2}
+                                                sx={{
+                                                    width: '100%',
+                                                }}
+                                            >
+                                                {education.items.map((item, index) => (
+                                                    <Grid
+                                                        item
+                                                        xs={12} sm={12} md={12} lg={6}
+                                                        key={index}
+                                                        sx={{
+                                                            display: 'flex',
+                                                            justifyContent: 'center'
+                                                        }}
+                                                    >
+                                                        <Paper
+                                                            elevation={3}
+                                                            sx={{
+                                                                padding: 2,
+                                                                width: '100%',
+                                                                maxWidth: '300px',
+                                                                height: '100%',
+                                                                maxHeight: '150px',
+                                                                backgroundColor: '#25252e',
+                                                                color: 'white',
+                                                                display: 'flex',
+                                                                flexDirection: 'column',
+                                                                justifyContent: 'center',
+                                                                alignItems: 'center',
+                                                                textAlign: 'center',
+                                                            }}
+                                                        >
+                                                            <Typography
+                                                                variant="body2"
+                                                                sx={{
+                                                                    color: 'cyan',
+                                                                    fontSize: '12px'
+                                                                }}>
+                                                                {item.duration}
+                                                            </Typography>
+                                                            <Typography
+                                                                variant="h6"
+                                                                sx={{
+                                                                    color: '#22c55e',
+                                                                    fontWeight: 'bold',
+                                                                    fontSize: {
+                                                                        sm: '17px',
+                                                                        md: '20px',
+                                                                        lg: '17px'
+                                                                    }
+                                                                }}>
+                                                                {item.institution}
+                                                            </Typography>
+                                                            <Typography
+                                                                variant="body1"
+                                                                sx={{
+                                                                    color: 'cyan',
+                                                                    fontSize: {
+                                                                        sm: '15px',
+                                                                        md: '17px',
+                                                                        lg: '12px'
+                                                                    }
+                                                                }}>
+                                                                {item.degree}
+                                                            </Typography>
+                                                        </Paper>
+                                                    </Grid>
+                                                ))}
+                                            </Grid>
+                                        )}
+
+                                        {selectedId === 'about Me' && (
+                                            <Stack
+                                                direction="column"
+                                                sx={{
+                                                    width: {
+                                                    },
+                                                    overflowX: 'hidden',
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                {aboutMe.info.map((item, index) => (
+                                                    <Grid
+                                                        container
+                                                        key={index}
+                                                        spacing={2}
+                                                        sx={{
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            padding: '10px 0',
+                                                            borderBottom: '1px solid rgba(255, 255, 255, 0.5)',
+                                                            overflow: 'hidden',
+                                                            flexWrap: 'nowrap'
+                                                        }}
+                                                    >
+                                                        <Grid
+                                                            item
+                                                            xs={4}
+                                                            sx={{
+                                                                textAlign: 'left',
+                                                            }}
+                                                        >
+                                                            <Typography
+                                                                variant="h6"
+                                                                sx={{
+                                                                    color: '#22c55e',
+                                                                    fontWeight: 'bold',
+                                                                    fontSize: {
+                                                                        xs: '13px',
+                                                                    }
+                                                                }}
+                                                            >
+                                                                {item.fieldName}
+                                                            </Typography>
+                                                        </Grid>
+
+                                                        <Grid
+                                                            item
+                                                            xs={8}
+                                                            sx={{
+                                                                textAlign: 'left',
+                                                                wordBreak: 'break-word',
+                                                                overflow: 'hidden',
+                                                            }}
+                                                        >
+                                                            <Typography
+                                                                variant="body1"
+                                                                sx={{
+                                                                    color: 'cyan',
+                                                                    fontSize: {
+                                                                        xs: '12px',
+                                                                    },
+                                                                    wordWrap: 'break-word',
+                                                                    whiteSpace: 'normal'
+                                                                }}
+                                                            >
+                                                                {item.fieldValue}
+                                                            </Typography>
+                                                        </Grid>
+                                                    </Grid>
+                                                ))}
+                                            </Stack>
+                                        )}
                                     </Container>
 
-
-
-
-                                    {selectedId === 'education' && (
-                                        <ul>
-                                            {education.items.map((education, index) => (
-                                                <li key={index}>
-                                                    <strong>{education.institution}</strong> - {education.major} <br />
-                                                    {education.duration} <br />
-                                                    {education.degree}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-
-                                    {selectedId === 'about Me' && (
-                                        <ul>
-                                            {aboutMe.info.map((item, index) => (
-                                                <li key={index}>
-                                                    <strong>{item.fieldName}:</strong> {item.fieldValue}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
                                 </Container>
                             </Stack>
                         </>

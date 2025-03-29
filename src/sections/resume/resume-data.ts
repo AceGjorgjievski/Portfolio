@@ -7,6 +7,12 @@ export const experience = {
     description: "Lorem Ipsum",
     items: [
         {
+            company: "MCA",
+            position: "Software Engineer - Internship",
+            duration: "March 2025 - Present",
+            responsibility: "Currently Learning Angular and .NET Core for deveoping new features for alpha.sitehub.dk website"
+        },
+        {
             company: "MVP Masters",
             position: "Software Engineer - Internship",
             duration: "Oct 2024 - Dec 2024",

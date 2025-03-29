@@ -249,6 +249,7 @@ export default function ResumeView() {
                                                                     <Paper
                                                                         elevation={3}
                                                                         sx={{
+                                                                            position: 'relative',
                                                                             padding: 4,
                                                                             width: '100%',
                                                                             maxWidth: '300px',
@@ -261,6 +262,14 @@ export default function ResumeView() {
                                                                             justifyContent: 'center',
                                                                             alignItems: 'center',
                                                                             textAlign: 'center',
+                                                                            transition: '0.3s ease-in-out',
+                                                                            '&:hover': {
+                                                                                backgroundColor: '#1e1e25',
+                                                                                transform: 'scale(1.05)',
+                                                                            },
+                                                                            '&:hover .hover-text': {
+                                                                                opacity: 1,
+                                                                            }
                                                                         }}
                                                                     >
                                                                         <Image
@@ -270,9 +279,31 @@ export default function ResumeView() {
                                                                             height={0}
                                                                             style={{
                                                                                 width: isSmUp ? "70px" : "50px",
-                                                                                height: isSmUp ? "70px" : "50px"
+                                                                                height: isSmUp ? "70px" : "50px",
+                                                                                transition: '0.3s ease-in-out',
                                                                             }}
                                                                         />
+                                                                        
+                                                                        <Typography
+                                                                            className="hover-text"
+                                                                            variant="subtitle1"
+                                                                            sx={{
+                                                                                position: 'absolute',
+                                                                                bottom: '10px',
+                                                                                left: '50%',
+                                                                                transform: 'translateX(-50%)',
+                                                                                opacity: 0,
+                                                                                transition: 'opacity 0.3s ease-in-out',
+                                                                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                                                                color: 'white',
+                                                                                padding: '4px 8px',
+                                                                                borderRadius: '4px',
+                                                                                fontSize: '14px',
+                                                                                pointerEvents: 'none',
+                                                                            }}
+                                                                        >
+                                                                            {skill.name}
+                                                                        </Typography>
                                                                     </Paper>
                                                                 </Grid>
                                                             ))}
@@ -625,6 +656,27 @@ export default function ResumeView() {
                                                                     height: isSmUp ? "70px" : "50px"
                                                                 }}
                                                             />
+                                                                        <Typography
+                variant="subtitle1"
+                sx={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    opacity: 0,
+                    transition: '0.3s ease-in-out',
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    color: 'white',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: '14px',
+                    '&:hover': {
+                        opacity: 1, // Show text on hover
+                    }
+                }}
+            >
+                {skill.name}
+            </Typography>
                                                         </Paper>
                                                     </Grid>
                                                 ))}

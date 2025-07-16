@@ -1,135 +1,51 @@
-'use client';
+"use client";
 
-import { Photo } from "@/components/photo";
-import { SocialNetworks } from "@/components/social-networks";
-import { Stats } from "@/components/stats";
+import { User } from "@/auth/types";
 import { useResponsive } from "@/hooks/use-response";
-import { Container, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { getDocById } from "@/services/firestore";
+import { Container } from "@mui/material";
+import { useEffect, useState } from "react";
+import DesktopHomeView from "./desktop-home-view";
+import MobileHomeView from "./mobile-home-view";
 
 export default function HomeView() {
-
   const isSmUp = useResponsive("up", "sm");
   const isMdUp = useResponsive("up", "md");
 
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const [user, setUser] = useState<User>();
 
   const onRenderComplete = () => {
     setIsFirstRender(false);
   };
 
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const res = await getDocById("profile", "Ace");
+      if (res) {
+        setUser(res as User);
+      }
+    };
+    fetchProfileData();
+  }, []);
 
   return (
-    <>
-      <Container sx={{ marginTop: '100px' }}>
-        {(isSmUp) ? (
-          <>
-            <Stack
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Container>
-                <Typography
-                  variant="h6"
-                >
-                  Software Engineer
-                </Typography>
-                <Typography
-                  sx={{ marginTop: '15px', marginBottom: '15px' }}
-                  variant={isMdUp ? 'h3' : 'h4'}
-                >
-                  Hello, I'm<br />
-                  <p
-                    style={{ color: '#22c55e' }}
-                  >
-                    Ace Gjorgjievski
-                  </p>
-                </Typography>
-                <Typography
-                  variant="body2"
-                >
-                  Student at the Faculty of Computer Science and Engineering,
-                  highly skilled in making Web & Mobile applications, always striving
-                  for new skills that will enrich the career ahead of me.
-                </Typography>
-                <Container
-                  sx={{ marginBottom: '40px' }}
-                >
-                  <SocialNetworks />
-                </Container>
-              </Container>
-
-              <Container>
-                <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
-              </Container>
-            </Stack>
-            <Stack>
-              <Stats />
-            </Stack>
-          </>
+    <Container sx={{ marginTop: "70px" }}>
+      {user &&
+        (isSmUp ? (
+          <DesktopHomeView
+            user={user}
+            isFirstRender={isFirstRender}
+            onRenderComplete={onRenderComplete}
+            isMdUp={isMdUp}
+          />
         ) : (
-          <>
-            <Stack
-              direction="column"
-              spacing={2}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Container>
-                <Container
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
-                </Container>
-                <Typography
-                  variant='h6'
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: '20px'
-                  }}
-                >
-                  Software Engineer
-                </Typography>
-                <Typography
-                  sx={{ marginTop: '15px', marginBottom: '15px' }}
-                  variant="h4"
-                >
-                  Hello, I'm<br />
-                  <p
-                    style={{ color: '#22c55e' }}
-                  >
-                    Ace Gjorgjievski
-                  </p>
-                </Typography>
-                <Typography
-                  variant="body2"
-                >
-                  Student at the Faculty of Computer Science and Engineering,
-                  highly skilled in making Web & Mobile applications, always striving
-                  for new skills that will enrich the career ahead of me.
-                </Typography>
-                <Container
-                  sx={{ marginBottom: '40px' }}
-                >
-                  <SocialNetworks />
-                </Container>
-
-              </Container>
-            </Stack>
-            <Stack>
-              <Stats />
-            </Stack>
-          </>
-        )}
-      </Container>
-    </>
+          <MobileHomeView
+            user={user}
+            isFirstRender={isFirstRender}
+            onRenderComplete={onRenderComplete}
+          />
+        ))}
+    </Container>
   );
 }

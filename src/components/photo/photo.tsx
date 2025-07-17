@@ -93,7 +93,7 @@ export default function Photo({ animate, onRenderComplete }: Props) {
             marginLeft: '0.688rem'
           }}
         >
-          "Empty"
+          Empty
         </Avatar>
       </motion.div>
     </Container>

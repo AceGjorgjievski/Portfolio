@@ -8,12 +8,17 @@ type Props = {
   onRenderComplete: () => void;
 };
 
-export default function Photo({ animate, onRenderComplete, }: Props) {
+export default function Photo({ animate, onRenderComplete }: Props) {
   const isSmUp = useResponsive("up", "sm");
   const isMdUp = useResponsive("up", "md");
+  const isXsUp = useResponsive("up", "xs");
 
-  const size = isMdUp ? 400 : isSmUp ? 280 : 280;
-
+  const size = isMdUp ? 400 : isSmUp ? 320 : 280;
+  const viewBox = isMdUp ? `-24 -5 ${size} ${size}`
+                  : isSmUp ? `13 6 ${size} ${size}` 
+                  : `33 6 ${size} ${size}`;
+  const motionCircleRadius = isMdUp ? (size / 1.9 - 20) 
+                  : (size / 1.9 - 22)
 
   return (
     <Container
@@ -21,9 +26,10 @@ export default function Photo({ animate, onRenderComplete, }: Props) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        position: "relative",
-        width: size,
-        height: size,
+        width: size + 10,
+        height: size + 10,
+        marginLeft: 0,
+        marginRight: isXsUp && !isSmUp ? '10rem' : 0
       }}
     >
       <motion.div
@@ -31,25 +37,33 @@ export default function Photo({ animate, onRenderComplete, }: Props) {
         animate={
           animate
             ? {
-              opacity: 1,
-              transition: { delay: 1.5, duration: 0.3, ease: "easeIn" },
-            }
+                opacity: 1,
+                transition: { delay: 1.5, duration: 0.3, ease: "easeIn" },
+              }
             : {}
         }
         onAnimationComplete={onRenderComplete}
-        style={{ position: "relative", width: "100%", height: "100%" }}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          marginLeft: isMdUp ? '5rem' : isSmUp ? 0 : isXsUp ? '10rem' : 0,
+          marginRight: isMdUp ? 0 : isSmUp ? '11rem' : isXsUp ? 0 : 0,
+        }}
       >
         <motion.svg
-          width="100%"
+          width="400px"
           height="100%"
-          viewBox={`0 20 ${size} ${size}`}
+          viewBox={viewBox}
           xmlns="http://www.w3.org/2000/svg"
-          style={{ position: 'absolute' }}
+          style={{ 
+            position: "absolute", 
+          }}
         >
           <motion.circle
-            cx={size / 2}
-            cy={size / 2}
-            r={size / 2.1}
+            cx={size / 2 - 30}
+            cy={size / 2 - 3}
+            r={motionCircleRadius}
             stroke="#22c55e"
             strokeWidth="4"
             strokeLinecap="round"
@@ -58,23 +72,25 @@ export default function Photo({ animate, onRenderComplete, }: Props) {
             initial={{ strokeDasharray: "24 10 0 0" }}
             animate={{
               strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 250 22 22"],
-              rotate: [120, 360]
+              rotate: [120, 360],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              repeatType: "reverse"
+              repeatType: "reverse",
             }}
           />
         </motion.svg>
         <Avatar
           alt="Profile picture"
-          src="/profile/lepotan1.jpg"
+          src="https://avatars.githubusercontent.com/u/54333799?v=4"
           sx={{
-            width: "100%",
-            height: "100%",
+            width: size - 32,
+            height: size - 32,
             borderRadius: "50%",
             zIndex: 10,
+            marginTop: isMdUp ? "24px" : '0.7rem',
+            marginLeft: '0.688rem'
           }}
         >
           "Empty"

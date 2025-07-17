@@ -52,7 +52,7 @@ export default function Photo({ animate, onRenderComplete }: Props) {
         }}
       >
         <motion.svg
-          width="400px"
+          width="25rem"
           height="100%"
           viewBox={viewBox}
           xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@ export default function Photo({ animate, onRenderComplete }: Props) {
             height: size - 32,
             borderRadius: "50%",
             zIndex: 10,
-            marginTop: isMdUp ? "24px" : '0.7rem',
+            marginTop: isMdUp ? '1.5rem' : '0.7rem',
             marginLeft: '0.688rem'
           }}
         >

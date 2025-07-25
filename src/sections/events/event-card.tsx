@@ -10,7 +10,6 @@ import {
 
 import { Event } from "@/types";
 
-
 type Props = {
   event: Event;
   onCardClick: (event: Event) => void;
@@ -59,8 +58,10 @@ export default function EventCard({ event, onCardClick }: Props) {
       <CardActions>
         <Button
           size="small"
-          href={''}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            onCardClick(event);
+          }}
           sx={{
             marginBottom: "1rem",
             color: "cyan",

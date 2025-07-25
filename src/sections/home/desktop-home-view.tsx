@@ -1,18 +1,22 @@
-import { User } from "@/auth/types";
+import { User } from "@/types/user";
 import { Photo } from "@/components/photo";
 import { SocialNetworks } from "@/components/social-networks";
 import { Stats } from "@/components/stats";
 import { Container, Stack, Typography } from "@mui/material";
 
-
 type Props = {
-  user: User,
-  isFirstRender: boolean,
-  onRenderComplete: () => void,
-  isMdUp: boolean,
+  user: User;
+  isFirstRender: boolean;
+  onRenderComplete: () => void;
+  isMdUp: boolean;
 };
 
-export default function DesktopHomeView({user, isFirstRender, onRenderComplete, isMdUp}: Props) {
+export default function DesktopHomeView({
+  user,
+  isFirstRender,
+  onRenderComplete,
+  isMdUp,
+}: Props) {
   return (
     <>
       <Stack
@@ -37,19 +41,19 @@ export default function DesktopHomeView({user, isFirstRender, onRenderComplete, 
               {user.title}
             </Typography>
             <Typography
-              sx={{ marginTop: "15px", marginBottom: "15px" }}
+              sx={{ marginTop: "15px", marginBottom: "15px", color: "white" }}
               variant={isMdUp ? "h3" : "h4"}
             >
-              <p
-                style={{
-                  color: "white",
-                }}
+              Hello, I&apos;m <br />
+              <Typography
+                component="span"
+                variant={isMdUp ? "h3" : "h4"}
+                sx={{ color: "#22c55e" }}
               >
-                Hello, I&apos;m
-                <br />
-              </p>
-              <p style={{ color: "#22c55e" }}>{user.name} {user.surname}</p>
+                {user.name} {user.surname}
+              </Typography>
             </Typography>
+
             <Typography
               variant="body2"
               sx={{
@@ -68,11 +72,7 @@ export default function DesktopHomeView({user, isFirstRender, onRenderComplete, 
           <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
         </Container>
       </Stack>
-      <Stack
-        sx={{
-          marginTop: "20px",
-        }}
-      >
+      <Stack>
         <Stats />
       </Stack>
     </>

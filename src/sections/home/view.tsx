@@ -1,6 +1,6 @@
 "use client";
 
-import { User } from "@/auth/types";
+import { User } from "@/types/user";
 import { useResponsive } from "@/hooks/use-response";
 import { getDocById } from "@/services/firestore";
 import { Container } from "@mui/material";

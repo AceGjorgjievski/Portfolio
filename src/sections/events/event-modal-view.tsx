@@ -1,5 +1,13 @@
-import { Box, CardMedia, Container, Modal, Typography } from "@mui/material";
+import {
+  Box,
+  CardMedia,
+  Container,
+  IconButton,
+  Modal,
+  Typography,
+} from "@mui/material";
 import { Event } from "@/types";
+import CloseIcon from "@mui/icons-material/Close";
 
 type Props = {
   selectedEvent: Event | null;
@@ -20,6 +28,7 @@ export default function EventModalView({
     >
       <Box
         sx={{
+          position: "relative",
           width: 1000,
           bgcolor: "#1e1e25",
           color: "white",
@@ -28,6 +37,23 @@ export default function EventModalView({
           boxShadow: 24,
         }}
       >
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            color: "white",
+            zIndex: 1,
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              transform: "scale(1.2)",
+              color: "#22c55e",
+            },
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
         {selectedEvent && (
           <>
             <Container>

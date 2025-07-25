@@ -12,7 +12,12 @@ export default function SocialNetworks() {
         <>
             <Stack
                 direction="row"
-                sx={{marginTop: '40px', justifyContent: 'center'}}
+                sx={{
+                    marginBottom: '20px', 
+                    marginTop: '80px', 
+                    justifyContent: 'center',
+                    marginRight: '1rem'
+                }}
                 gap={2}
             >
                 {socials.map((social, index) => {

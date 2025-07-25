@@ -28,8 +28,15 @@ export default function Photo({ animate, onRenderComplete }: Props) {
         alignItems: "center",
         width: size + 10,
         height: size + 10,
-        marginLeft: 0,
-        marginRight: isXsUp && !isSmUp ? '10rem' : 0
+        marginLeft: {
+          sm: '2rem',
+          lg: 0
+        },
+        marginRight: isXsUp && !isSmUp ? '10rem' : isMdUp ? '5rem' : 0,
+        marginBottom: {
+          md: '3rem',
+          lg: '3rem'
+        }
       }}
     >
       <motion.div

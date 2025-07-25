@@ -24,8 +24,19 @@ export default function DesktopHomeView({
         spacing={2}
         justifyContent="center"
         alignItems="center"
+        sx={{
+          marginLeft: {
+            sm: '4rem'
+          }
+        }}
       >
-        <Container>
+        <Container
+          sx={{
+              marginRight: {
+                sm: '0rem'
+              }
+          }}
+        >
           <Container
             sx={{
               height: "270px",

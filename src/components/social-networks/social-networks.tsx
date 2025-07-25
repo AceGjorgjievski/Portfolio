@@ -14,9 +14,9 @@ export default function SocialNetworks() {
                 direction="row"
                 sx={{
                     marginBottom: '20px', 
-                    marginTop: '80px', 
+                    marginTop: '100px', 
                     justifyContent: 'center',
-                    marginRight: '1rem'
+                    marginRight: '1rem',
                 }}
                 gap={2}
             >

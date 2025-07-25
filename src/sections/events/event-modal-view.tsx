@@ -35,6 +35,9 @@ export default function EventModalView({
           borderRadius: "8px",
           p: 4,
           boxShadow: 24,
+          maxWidth: {
+            xs: "350px",
+          },
         }}
       >
         <IconButton

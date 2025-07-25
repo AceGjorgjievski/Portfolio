@@ -86,7 +86,7 @@ export default function EventsView() {
   }, []);
 
   return (
-    <Container sx={{ mt: "70px", padding: '4rem' }}>
+    <Container sx={{ padding: '3rem' }}>
       <Grid container spacing={3} justifyContent="center">
         {events.map((event, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>

@@ -17,7 +17,7 @@ type Props = {
 
 export default function EventCard({ event, onCardClick }: Props) {
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: "#1e1e25", color: "white" }}>
+    <Card sx={{ width: '265px', backgroundColor: "#1e1e25", color: "white" }}>
       <Box
         sx={{
           overflow: "hidden",

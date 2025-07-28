@@ -28,7 +28,11 @@ export default function ResumeView() {
           getAllDocs("education"),
         ]);
 
-        setExperience(experienceRes as Experience[]);
+        const experienceResSorted = (experienceRes as Experience[]).sort(
+          (a, b) => b.endDate.toDate().getTime() - a.startDate.toDate().getTime()
+        )
+
+        setExperience(experienceResSorted as Experience[]);
         setSkills(skillsRes as Skill[]);
         setEducation(educationRes as Education[]);
       } catch (error) {

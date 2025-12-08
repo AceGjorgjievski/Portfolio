@@ -3,12 +3,14 @@ import { Photo } from "@/components/photo";
 import { SocialNetworks } from "@/components/social-networks";
 import { Stats } from "@/components/stats";
 import { Container, Stack, Typography } from "@mui/material";
+import { GitHubStats } from "@/types/github";
 
 type Props = {
   user: User;
   isFirstRender: boolean;
   onRenderComplete: () => void;
   isMdUp: boolean;
+  githubStats: GitHubStats;
 };
 
 export default function DesktopHomeView({
@@ -16,6 +18,7 @@ export default function DesktopHomeView({
   isFirstRender,
   onRenderComplete,
   isMdUp,
+  githubStats
 }: Props) {
   return (
     <>
@@ -84,7 +87,7 @@ export default function DesktopHomeView({
         </Container>
       </Stack>
       <Stack>
-        <Stats />
+        <Stats githubStats={githubStats}/>
       </Stack>
     </>
   );

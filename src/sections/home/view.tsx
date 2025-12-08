@@ -7,12 +7,14 @@ import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import DesktopHomeView from "./desktop-home-view";
 import MobileHomeView from "./mobile-home-view";
+import { GitHubStats } from "@/types/github";
 
 export default function HomeView() {
   const isSmUp = useResponsive("up", "sm");
   const isMdUp = useResponsive("up", "md");
 
-  const [isFirstRender, setIsFirstRender] = useState(true);
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
+  const [githubStats, setGithubStats] = useState<GitHubStats>({username: '', totalCommits: 0});
   const [user, setUser] = useState<User>();
 
   const onRenderComplete = () => {
@@ -27,6 +29,14 @@ export default function HomeView() {
       }
     };
     fetchProfileData();
+
+    const fetchGithubData = async () => {
+      const res = await fetch("/api/github-commits");
+      const data = await res.json();
+      setGithubStats(data);
+    };
+
+    fetchGithubData();
   }, []);
 
   return (
@@ -37,6 +47,7 @@ export default function HomeView() {
             user={user}
             isFirstRender={isFirstRender}
             onRenderComplete={onRenderComplete}
+            githubStats={githubStats}
             isMdUp={isMdUp}
           />
         ) : (
@@ -44,6 +55,7 @@ export default function HomeView() {
             user={user}
             isFirstRender={isFirstRender}
             onRenderComplete={onRenderComplete}
+            githubStats={githubStats}
           />
         ))}
     </Container>

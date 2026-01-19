@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Container } from "@mui/material";
 
-import { useResponsive } from "@/hooks/use-response";
+import { useResponsive } from "@/hooks";
 import { getAllDocs } from "@/services/firestore";
 import { Project } from "@/types";
 
@@ -35,9 +35,9 @@ export default function ProjectsView() {
     const fetchAllData = async () => {
       try {
         const projectsRes = await getAllDocs("projects");
-              const sortedProjects = (projectsRes as Project[]).sort(
-        (a, b) => a.number - b.number
-      );
+        const sortedProjects = (projectsRes as Project[]).sort(
+          (a, b) => a.number - b.number,
+        );
         setProjects(sortedProjects as Project[]);
         if (sortedProjects.length > 0) {
           console.log(projectsRes);
@@ -56,7 +56,7 @@ export default function ProjectsView() {
       {activeProject &&
         (isSmUp ? (
           <DesktopProjectsView
-          activeIndex={activeIndex}
+            activeIndex={activeIndex}
             activeProject={activeProject}
             allProjects={projects}
             handleActiveProject={handleActiveProject}
@@ -64,13 +64,11 @@ export default function ProjectsView() {
           />
         ) : (
           <MobileProjectsView
-          activeIndex={activeIndex}
-
+            activeIndex={activeIndex}
             activeProject={activeProject}
             allProjects={projects}
             handleActiveProject={handleActiveProject}
             setActiveIndex={setActiveIndex}
-
           />
         ))}
     </Container>

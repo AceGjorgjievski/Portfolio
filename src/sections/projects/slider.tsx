@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
 import Image from "next/image";
-import { useResponsive } from "@/hooks/use-response";
+import { useResponsive } from "@/hooks";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper/types";
@@ -108,7 +108,7 @@ export default function Slider({
                   }}
                 >
                   <Image
-                    src={"/events/digit.jpg"}
+                    src={project.picture}
                     alt={project.title}
                     layout="fill"
                     objectFit="cover"

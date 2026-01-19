@@ -18,8 +18,70 @@ export default function DesktopHomeView({
   isFirstRender,
   onRenderComplete,
   isMdUp,
-  githubStats
+  githubStats,
 }: Props) {
+  
+  const renderUserInfo = (
+    <Container
+      sx={{
+        marginRight: {
+          sm: "0rem",
+        },
+      }}
+    >
+      <Container
+        sx={{
+          height: "270px",
+          marginTop: "20px",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            color: "white",
+          }}
+        >
+          {user.title}
+        </Typography>
+        <Typography
+          sx={{ marginTop: "15px", marginBottom: "15px", color: "white" }}
+          variant={isMdUp ? "h3" : "h4"}
+        >
+          Hello, I&apos;m <br />
+          <Typography
+            component="span"
+            variant={isMdUp ? "h3" : "h4"}
+            sx={{ color: "#22c55e" }}
+          >
+            {user.name} {user.surname}
+          </Typography>
+        </Typography>
+
+        <Typography
+          variant="body2"
+          sx={{
+            color: "white",
+          }}
+        >
+          {user.description}
+        </Typography>
+      </Container>
+      <Container>
+        <SocialNetworks />
+      </Container>
+    </Container>
+  );
+
+  const renderProfilePicture = (
+    <Container>
+      <Photo
+        animate={isFirstRender}
+        profilePicture={user?.profilePicture}
+        onRenderComplete={onRenderComplete}
+      />
+    </Container>
+  );
+
   return (
     <>
       <Stack
@@ -29,65 +91,16 @@ export default function DesktopHomeView({
         alignItems="center"
         sx={{
           marginLeft: {
-            sm: '4rem'
-          }
+            sm: "4rem",
+          },
         }}
       >
-        <Container
-          sx={{
-              marginRight: {
-                sm: '0rem'
-              }
-          }}
-        >
-          <Container
-            sx={{
-              height: "270px",
-              marginTop: "20px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                color: "white",
-              }}
-            >
-              {user.title}
-            </Typography>
-            <Typography
-              sx={{ marginTop: "15px", marginBottom: "15px", color: "white" }}
-              variant={isMdUp ? "h3" : "h4"}
-            >
-              Hello, I&apos;m <br />
-              <Typography
-                component="span"
-                variant={isMdUp ? "h3" : "h4"}
-                sx={{ color: "#22c55e" }}
-              >
-                {user.name} {user.surname}
-              </Typography>
-            </Typography>
+        {renderUserInfo}
 
-            <Typography
-              variant="body2"
-              sx={{
-                color: "white",
-              }}
-            >
-              {user.description}
-            </Typography>
-          </Container>
-          <Container>
-            <SocialNetworks />
-          </Container>
-        </Container>
-
-        <Container>
-          <Photo animate={isFirstRender} onRenderComplete={onRenderComplete} />
-        </Container>
+        {renderProfilePicture}
       </Stack>
       <Stack>
-        <Stats githubStats={githubStats}/>
+        <Stats githubStats={githubStats} />
       </Stack>
     </>
   );

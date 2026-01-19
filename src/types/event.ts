@@ -4,6 +4,8 @@ export type Event = {
     name: string,
     place: string,
     time: string,
+    images: string[],
+    description: string,
     links?: {
         chrome?: string,
         instagram?: string,

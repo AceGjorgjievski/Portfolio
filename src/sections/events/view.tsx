@@ -1,20 +1,24 @@
 "use client";
 
-import {
-  Container,
-  Grid,
-} from "@mui/material";
 import { useEffect, useState } from "react";
+import { useResponsive } from "@/hooks";
+
 import { Event } from "@/types";
 import { getAllDocs } from "@/services/firestore";
-import EventCard from "./event-card";
+
+import { Container } from "@mui/material";
+
 import EventModalView from "./event-modal-view";
 
+import DesktopEventsView from "./desktop-events-view";
+import MobileEventsView from "./mobile-events-view";
 
 export default function EventsView() {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const isSmUp = useResponsive("up", "sm");
 
   const handleCardClick = (event: Event) => {
     setSelectedEvent(event);
@@ -25,7 +29,6 @@ export default function EventsView() {
     setModalOpen(false);
     setSelectedEvent(null);
   };
-
 
   const monthMap: Record<string, number> = {
     january: 0,
@@ -47,7 +50,6 @@ export default function EventsView() {
       const res = await getAllDocs("events");
 
       if (res) {
-
         const sortedEvents = (res as Event[]).sort((a, b) => {
           const [monthA, yearA] = a.time.toLowerCase().split(", ");
           const [monthB, yearB] = b.time.toLowerCase().split(", ");
@@ -59,7 +61,6 @@ export default function EventsView() {
         });
 
         const withImages = sortedEvents.map((event) => {
-          console.log(event.time);
           const safeId = event.id.toLowerCase();
           const imageVariants: string[] = [];
 
@@ -77,7 +78,6 @@ export default function EventsView() {
           };
         });
 
-      
         setEvents(withImages);
       }
     };
@@ -86,14 +86,19 @@ export default function EventsView() {
   }, []);
 
   return (
-    <Container sx={{ padding: '3rem' }}>
-      <Grid container spacing={3} justifyContent="center">
-        {events.map((event, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <EventCard event={event} onCardClick={handleCardClick}/>
-          </Grid>
-        ))}
-      </Grid>
+    <Container
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "3rem",
+      }}
+    >
+      {isSmUp ? (
+        <DesktopEventsView events={events} handleCardClick={handleCardClick} />
+      ) : (
+        <MobileEventsView events={events} handleCardClick={handleCardClick} />
+      )}
       <EventModalView
         selectedEvent={selectedEvent}
         modalOpen={modalOpen}

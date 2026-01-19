@@ -99,13 +99,15 @@ export default function DesktopResumeView({
 
   const renderSkills = (skills: Skill[]) => (
     <Grid container spacing={2} sx={{ width: "100%" }}>
-      {skills.map((skill, index) => (
+    {[...skills]
+      .sort((a, b) => a.number - b.number)
+      .map((skill, index) => (
         <Grid
           item
           sm={12}
           md={12}
           lg={6}
-          key={index}
+          key={skill.id || index}
           sx={{ display: "flex", justifyContent: "center" }}
         >
           <Paper
@@ -224,8 +226,8 @@ export default function DesktopResumeView({
                   fontWeight: "bold",
                   fontSize: {
                     sm: "12px",
-                    md: "20px",
-                    lg: "17px",
+                    md: "18px",
+                    lg: "14px",
                   },
                 }}
               >

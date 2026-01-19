@@ -1,6 +1,6 @@
 "use client";
 
-import { useResponsive } from "@/hooks/use-response";
+import { useResponsive } from "@/hooks";
 import { Container } from "@mui/material";
 
 import { useEffect, useState } from "react";

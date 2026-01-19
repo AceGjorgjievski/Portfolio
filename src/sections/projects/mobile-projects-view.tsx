@@ -1,6 +1,6 @@
 import { Container, Stack, Typography } from "@mui/material";
 
-import { useResponsive } from "@/hooks/use-response";
+import { useResponsive } from "@/hooks";
 
 import { Project } from "@/types";
 

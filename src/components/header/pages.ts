@@ -14,7 +14,7 @@ export const pages = [
         url: "/resume"
     },
     {
-        name: "Contact",
-        url: "/contact"
+        name: "Events",
+        url: "/events"
     }
 ]

@@ -1,6 +1,6 @@
 import { Container, Stack, Typography } from "@mui/material";
 
-import { useResponsive } from "@/hooks/use-response";
+import { useResponsive } from "@/hooks";
 
 import { Project } from "@/types";
 
@@ -21,7 +21,7 @@ export default function DesktopProjectsView({
   activeProject,
   allProjects,
   handleActiveProject,
-  setActiveIndex
+  setActiveIndex,
 }: Props) {
   const isSmUp = useResponsive("up", "sm");
   const isMdUp = useResponsive("up", "md");
@@ -49,28 +49,21 @@ export default function DesktopProjectsView({
         >
           <Typography variant="h2">{activeProject.number}</Typography>
           <Typography variant="h4">{activeProject.category} project</Typography>
-          <Typography variant="subtitle1">{activeProject.description}</Typography>
+          <Typography variant="subtitle1">
+            {activeProject.description}
+          </Typography>
           <ProjectStack activeProject={activeProject} />
           <hr />
           <ProjectExternalLink activeProject={activeProject} />
         </Container>
 
-        <Container
-          sx={{
-            flex: "1",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Slider 
-            activeIndex={activeIndex} 
-            setActiveIndex={setActiveIndex} 
-            setActiveProject={handleActiveProject} 
-            allProjects={allProjects} 
-            isSmUp={isSmUp} 
-          />
-        </Container>
+        <Slider
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          setActiveProject={handleActiveProject}
+          allProjects={allProjects}
+          isSmUp={isSmUp}
+        />
       </Container>
     </Stack>
   );

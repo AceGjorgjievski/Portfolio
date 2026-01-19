@@ -7,3 +7,5 @@ export const FIREBASE_API = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
+
+export const API_ENDPOINT = process.env.NEXT_PUBLIC_API_ENDPOINT;

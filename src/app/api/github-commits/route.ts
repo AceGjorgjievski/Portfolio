@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 const USERNAME = process.env.GITHUB_USERNAME;
 const TOKEN = process.env.GITHUB_TOKEN;
-const BASE = "https://api.github.com";
+const BASE = process.env.GITHUB_API;
 
 
 export async function GET() {

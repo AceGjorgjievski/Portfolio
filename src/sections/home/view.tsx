@@ -1,13 +1,13 @@
 "use client";
 
-import { User } from "@/types/user";
-import { useResponsive } from "@/hooks/use-response";
+import { User } from "@/types";
+import { useResponsive } from "@/hooks";
 import { getDocById } from "@/services/firestore";
 import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import DesktopHomeView from "./desktop-home-view";
 import MobileHomeView from "./mobile-home-view";
-import { GitHubStats } from "@/types/github";
+import { GitHubStats } from "@/types";
 
 export default function HomeView() {
   const isSmUp = useResponsive("up", "sm");

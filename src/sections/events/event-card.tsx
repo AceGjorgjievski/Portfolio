@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function EventCard({ event, onCardClick }: Props) {
-  
+
   const renderEventImage = (
     <Box
       sx={{
@@ -31,7 +31,7 @@ export default function EventCard({ event, onCardClick }: Props) {
     >
       <CardMedia
         component="img"
-        image={event?.images[0]}
+        image={event?.pictures[0]}
         alt={event.name}
         sx={{
           height: "100%",

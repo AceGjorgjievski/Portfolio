@@ -1,13 +1,24 @@
 import {
   Box,
-  CardMedia,
   Container,
   IconButton,
   Modal,
+  Stack,
   Typography,
 } from "@mui/material";
 import { Event } from "@/types";
 import CloseIcon from "@mui/icons-material/Close";
+
+import { PictureSlider } from "@/components/picture-slider";
+
+import LanguageIcon from "@mui/icons-material/Language";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
+import { JSX } from "react";
 
 type Props = {
   selectedEvent: Event | null;
@@ -15,11 +26,98 @@ type Props = {
   handleClose: () => void;
 };
 
+const linkIcons: Record<string, JSX.Element> = {
+  chrome: <ChromeReaderModeIcon />,
+  web: <LanguageIcon />,
+  instagram: <InstagramIcon />,
+  facebook: <FacebookIcon />,
+  youtube: <YouTubeIcon />,
+  linkedIn: <LinkedInIcon />,
+};
+
 export default function EventModalView({
   selectedEvent,
   modalOpen,
   handleClose,
 }: Props) {
+  const hasLinks =
+    selectedEvent?.links && Object.keys(selectedEvent.links).length > 0;
+
+  const renderCloseIcon = (
+    <IconButton
+      onClick={handleClose}
+      sx={{
+        position: "absolute",
+        top: 16,
+        right: 16,
+        color: "white",
+        zIndex: 1,
+        "&:hover": {
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          transform: "scale(1.2)",
+          color: "#22c55e",
+        },
+      }}
+    >
+      <CloseIcon />
+    </IconButton>
+  );
+
+  const renderEventInfo = (selectedEvent: Event) => (
+    <>
+      <Typography variant="h6" sx={{ color: "#22c55e" }}>
+        {selectedEvent.name}
+      </Typography>
+      <Typography sx={{ mb: 2 }}>
+        {selectedEvent.place} • {selectedEvent.time}
+      </Typography>
+      <PictureSlider pictures={selectedEvent.pictures} />
+      <Typography
+        variant="body2"
+        sx={{
+          whiteSpace: "pre-line",
+          maxHeight: "200px",
+          overflowY: "auto",
+          pr: 1,
+        }}
+      >
+        {selectedEvent.description || "No description available."}
+      </Typography>
+    </>
+  );
+
+  const renderEventLinks = (hasLinks: boolean | undefined) => (
+    <>
+      {hasLinks && (
+        <Stack direction="row" spacing={2} mt={2}>
+          {Object.entries(selectedEvent!.links!).map(([key, url]) => {
+            if (!url) return null;
+            const fullUrl = url.links[0];
+
+            return (
+              <IconButton
+                key={key}
+                component="a"
+                href={fullUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "white",
+                  "&:hover": {
+                    color: "#22c55e",
+                    transform: "scale(1.2)",
+                  },
+                }}
+              >
+                {linkIcons[key]}
+              </IconButton>
+            );
+          })}
+        </Stack>
+      )}
+    </>
+  );
+
   return (
     <Modal
       open={modalOpen}
@@ -29,7 +127,7 @@ export default function EventModalView({
       <Box
         sx={{
           position: "relative",
-          width: 1000,
+          width: 2000,
           bgcolor: "#1e1e25",
           color: "white",
           borderRadius: "8px",
@@ -37,51 +135,17 @@ export default function EventModalView({
           boxShadow: 24,
           maxWidth: {
             xs: "350px",
+            sm: "500px",
+            md: "700px",
           },
         }}
       >
-        <IconButton
-          onClick={handleClose}
-          sx={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            color: "white",
-            zIndex: 1,
-            "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-              transform: "scale(1.2)",
-              color: "#22c55e",
-            },
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
+        {renderCloseIcon}
         {selectedEvent && (
           <>
             <Container>
-              <Typography variant="h6" sx={{ color: "#22c55e" }}>
-                {selectedEvent.name}
-              </Typography>
-              <Typography sx={{ mb: 2 }}>
-                {selectedEvent.place} • {selectedEvent.time}
-              </Typography>
-              <CardMedia
-                component="img"
-                image={selectedEvent.images[0]}
-                alt={selectedEvent.name}
-                sx={{
-                  width: "100%",
-                  maxHeight: 500,
-                  height: "auto",
-                  objectFit: "cover",
-                  borderRadius: 1,
-                  mb: 2,
-                }}
-              />
-              <Typography variant="body2">
-                {selectedEvent.description || "No description available."}
-              </Typography>
+              {renderEventInfo(selectedEvent)}
+              {renderEventLinks(hasLinks)}
             </Container>
           </>
         )}

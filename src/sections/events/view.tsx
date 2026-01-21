@@ -57,28 +57,10 @@ export default function EventsView() {
           const dateA = new Date(Number(yearA), monthMap[monthA]);
           const dateB = new Date(Number(yearB), monthMap[monthB]);
 
-          return dateA.getTime() - dateB.getTime();
+          return dateB.getTime() - dateA.getTime();
         });
 
-        const withImages = sortedEvents.map((event) => {
-          const safeId = event.id.toLowerCase();
-          const imageVariants: string[] = [];
-
-          if (safeId === "junior achievement") {
-            for (let i = 1; i <= 3; i++) {
-              imageVariants.push(`/events/${safeId}_${i}.jpg`);
-            }
-          } else {
-            imageVariants.push(`/events/${safeId}.jpg`);
-          }
-
-          return {
-            ...event,
-            images: imageVariants,
-          };
-        });
-
-        setEvents(withImages);
+        setEvents(sortedEvents);
       }
     };
 

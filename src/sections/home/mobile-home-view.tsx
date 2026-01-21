@@ -36,6 +36,7 @@ export default function MobileHomeView({
           >
             <Photo
               animate={isFirstRender}
+              profilePicture={user?.profilePicture}
               onRenderComplete={onRenderComplete}
             />
           </Container>

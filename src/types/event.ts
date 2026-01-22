@@ -1,19 +1,8 @@
 export type Link = {
-    chrome?: {
-        links: string[];
-    },
-    web?: {
-        links: string[],
-    },
-    instagram?: {
-        links: string[],
-    },
-    facebook?: {
-        links: string[],
-    },
-    youtube?: {
-        links: string[],
-    }
+    web?: string[],
+    instagram?: string[],
+    facebook?: string[],
+    youtube?: string[]
 }
 
 export type Event = {

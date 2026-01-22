@@ -43,6 +43,45 @@ export default function Slider({
     setActiveProject(currentIndex);
   };
 
+  const renderSwiper = (
+    <Swiper
+      onSwiper={(swiper) => (swiperRef.current = swiper)}
+      modules={[Pagination, Navigation]}
+      spaceBetween={30}
+      slidesPerView={1}
+      loop={false}
+      navigation
+      pagination={{ clickable: true }}
+      initialSlide={activeIndex}
+      onSlideChange={handleSlideChange}
+    >
+      {allProjects.map((project, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <Box
+              sx={{
+                padding: "20px",
+                borderRadius: "8px",
+                color: "white",
+                height: "35vh",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src={project.picture}
+                alt={project.title}
+                layout="fill"
+                objectFit="cover"
+                style={{ borderRadius: "8px" }}
+              />
+            </Box>
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
+  );
+
   return (
     <>
       <Container
@@ -83,42 +122,7 @@ export default function Slider({
             />
           </>
         )}
-        <Swiper
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          modules={[Pagination, Navigation]}
-          spaceBetween={30}
-          slidesPerView={1}
-          loop={false}
-          navigation
-          pagination={{ clickable: true }}
-          initialSlide={activeIndex}
-          onSlideChange={handleSlideChange}
-        >
-          {allProjects.map((project, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <Box
-                  sx={{
-                    padding: "20px",
-                    borderRadius: "8px",
-                    color: "white",
-                    height: "35vh",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Image
-                    src={project.picture}
-                    alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
-                    style={{ borderRadius: "8px" }}
-                  />
-                </Box>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+        {renderSwiper}
       </Container>
     </>
   );

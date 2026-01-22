@@ -2,6 +2,8 @@ import {
   Box,
   Container,
   IconButton,
+  Menu,
+  MenuItem,
   Modal,
   Stack,
   Typography,
@@ -18,7 +20,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-import { JSX } from "react";
+import { JSX, useState } from "react";
 
 type Props = {
   selectedEvent: Event | null;
@@ -40,8 +42,30 @@ export default function EventModalView({
   modalOpen,
   handleClose,
 }: Props) {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [activeLinks, setActiveLinks] = useState<string[]>([]);
+
+  const open = Boolean(anchorEl);
+
   const hasLinks =
     selectedEvent?.links && Object.keys(selectedEvent.links).length > 0;
+
+  const handleLinkClick = (
+    event: React.MouseEvent<HTMLElement>,
+    links: string[],
+  ) => {
+    if (links.length === 1) {
+      window.open(links[0], "_blank", "noopener,noreferrer");
+    } else {
+      setAnchorEl(event.currentTarget);
+      setActiveLinks(links);
+    }
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setActiveLinks([]);
+  };
 
   const renderCloseIcon = (
     <IconButton
@@ -90,15 +114,14 @@ export default function EventModalView({
     <>
       {hasLinks && (
         <Stack direction="row" spacing={2} mt={2}>
-          {Object.entries(selectedEvent!.links!).map(([key, url]) => {
-            if (!url) return null;
-            const fullUrl = url.links[0];
+          {Object.entries(selectedEvent!.links!).map(([key, links]) => {
+            if (!links || links.length === 0) return null;
 
             return (
               <IconButton
                 key={key}
+                onClick={(e) => handleLinkClick(e, links)}
                 component="a"
-                href={fullUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
@@ -115,6 +138,20 @@ export default function EventModalView({
           })}
         </Stack>
       )}
+      <Menu anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
+        {activeLinks.map((link, index) => (
+          <MenuItem
+            key={index}
+            component="a"
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleCloseMenu}
+          >
+            Link {index + 1}
+          </MenuItem>
+        ))}
+      </Menu>
     </>
   );
 

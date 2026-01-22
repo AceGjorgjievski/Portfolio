@@ -152,7 +152,9 @@ export default function MobileResumeView({
         width: "100%",
       }}
     >
-      {skills.map((skill, index) => (
+      {[...skills]
+      .sort((a, b) => a.number - b.number)
+      .map((skill, index) => (
         <Grid
           item
           xs={12}

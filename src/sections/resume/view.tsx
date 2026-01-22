@@ -8,6 +8,7 @@ import { getAllDocs } from "@/services/firestore";
 import DesktopResumeView from "./desktop-resume-view";
 import MobileResumeView from "./mobile-resume-view";
 import { Education, Experience, Skill } from "@/types";
+import ExperienceModalView from "./experience-modal-view";
 
 type SectionKey = "experience" | "skills" | "education";
 
@@ -19,6 +20,20 @@ export default function ResumeView() {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [education, setEducation] = useState<Education[]>([]);
 
+  const [selectedExperience, setSelectedExperience] =
+    useState<Experience | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const handleExperienceModalOpen = (experience: Experience) => {
+    setSelectedExperience(experience);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedExperience(null);
+  };
+
   useEffect(() => {
     const fetchAllData = async () => {
       try {
@@ -29,8 +44,9 @@ export default function ResumeView() {
         ]);
 
         const experienceResSorted = (experienceRes as Experience[]).sort(
-          (a, b) => b.endDate.toDate().getTime() - a.startDate.toDate().getTime()
-        )
+          (a, b) =>
+            b.endDate.toDate().getTime() - a.startDate.toDate().getTime(),
+        );
 
         setExperience(experienceResSorted as Experience[]);
         setSkills(skillsRes as Skill[]);
@@ -47,7 +63,7 @@ export default function ResumeView() {
     <>
       <Container
         sx={{
-          marginTop: "70px",
+          marginTop: isSmUp ? "70px" : "20px",
         }}
       >
         {isSmUp ? (
@@ -58,6 +74,7 @@ export default function ResumeView() {
               education={education}
               setSelectedId={setSelectedId}
               selectedId={selectedId}
+              handleExperienceModalOpen={handleExperienceModalOpen}
             />
           </>
         ) : (
@@ -68,9 +85,15 @@ export default function ResumeView() {
               education={education}
               setSelectedId={setSelectedId}
               selectedId={selectedId}
+              handleExperienceModalOpen={handleExperienceModalOpen}
             />
           </>
         )}
+        <ExperienceModalView
+          selectedExpecience={selectedExperience}
+          modalOpen={modalOpen}
+          handleClose={handleCloseModal}
+        />
       </Container>
     </>
   );

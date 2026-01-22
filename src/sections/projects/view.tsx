@@ -40,7 +40,6 @@ export default function ProjectsView() {
         );
         setProjects(sortedProjects as Project[]);
         if (sortedProjects.length > 0) {
-          console.log(projectsRes);
           setActiveProject(projectsRes[0] as Project);
         }
       } catch (error) {

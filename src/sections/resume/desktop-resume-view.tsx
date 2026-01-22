@@ -24,6 +24,7 @@ type Props = {
   education: Education[];
   setSelectedId: (id: SectionKey) => void;
   selectedId: SectionKey;
+  handleExperienceModalOpen: (experience: Experience) => void;
 };
 
 export default function DesktopResumeView({
@@ -32,15 +33,17 @@ export default function DesktopResumeView({
   education,
   setSelectedId,
   selectedId,
+  handleExperienceModalOpen,
 }: Props) {
+  
   const selectedIdTitle =
     selectedId === "experience"
       ? "My Experience"
       : selectedId === "skills"
-      ? "My Skills"
-      : selectedId === "education"
-      ? "My Education"
-      : "My Events";
+        ? "My Skills"
+        : selectedId === "education"
+          ? "My Education"
+          : "My Events";
 
   const renderExperience = (experience: Experience[]) => (
     <Grid container spacing={2} sx={{ width: "100%" }}>
@@ -55,6 +58,7 @@ export default function DesktopResumeView({
         >
           <Paper
             elevation={3}
+            onClick={() => handleExperienceModalOpen(item)}
             sx={{
               padding: 2,
               width: "100%",
@@ -67,6 +71,7 @@ export default function DesktopResumeView({
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
+              cursor: "pointer",
             }}
           >
             <Typography
@@ -99,76 +104,76 @@ export default function DesktopResumeView({
 
   const renderSkills = (skills: Skill[]) => (
     <Grid container spacing={2} sx={{ width: "100%" }}>
-    {[...skills]
-      .sort((a, b) => a.number - b.number)
-      .map((skill, index) => (
-        <Grid
-          item
-          sm={12}
-          md={12}
-          lg={6}
-          key={skill.id || index}
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
-          <Paper
-            elevation={3}
-            sx={{
-              position: "relative",
-              padding: 4,
-              width: "100%",
-              maxWidth: "300px",
-              maxHeight: "150px",
-              backgroundColor: "#25252e",
-              color: "white",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              transition: "0.3s ease-in-out",
-              "&:hover": {
-                backgroundColor: "#1e1e25",
-                transform: "scale(1.05)",
-              },
-              "&:hover .hover-text": {
-                opacity: 1,
-              },
-            }}
+      {[...skills]
+        .sort((a, b) => a.number - b.number)
+        .map((skill, index) => (
+          <Grid
+            item
+            sm={12}
+            md={12}
+            lg={6}
+            key={skill.id || index}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
-            <Image
-              src={skill.icon}
-              alt={skill.name}
-              width={0}
-              height={0}
-              style={{
-                width: "4.375rem",
-                height: "4.375rem",
-                transition: "0.3s ease-in-out",
-              }}
-            />
-            <Typography
-              className="hover-text"
-              variant="subtitle1"
+            <Paper
+              elevation={3}
               sx={{
-                position: "absolute",
-                bottom: "10px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                opacity: 0,
-                transition: "opacity 0.3s ease-in-out",
-                backgroundColor: "rgba(0, 0, 0, 0.7)",
+                position: "relative",
+                padding: 4,
+                width: "100%",
+                maxWidth: "300px",
+                maxHeight: "150px",
+                backgroundColor: "#25252e",
                 color: "white",
-                padding: "4px 8px",
-                borderRadius: "4px",
-                fontSize: "14px",
-                pointerEvents: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                transition: "0.3s ease-in-out",
+                "&:hover": {
+                  backgroundColor: "#1e1e25",
+                  transform: "scale(1.05)",
+                },
+                "&:hover .hover-text": {
+                  opacity: 1,
+                },
               }}
             >
-              {skill.name}
-            </Typography>
-          </Paper>
-        </Grid>
-      ))}
+              <Image
+                src={skill.icon}
+                alt={skill.name}
+                width={0}
+                height={0}
+                style={{
+                  width: "4.375rem",
+                  height: "4.375rem",
+                  transition: "0.3s ease-in-out",
+                }}
+              />
+              <Typography
+                className="hover-text"
+                variant="subtitle1"
+                sx={{
+                  position: "absolute",
+                  bottom: "10px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  opacity: 0,
+                  transition: "opacity 0.3s ease-in-out",
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "white",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontSize: "14px",
+                  pointerEvents: "none",
+                }}
+              >
+                {skill.name}
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
     </Grid>
   );
 

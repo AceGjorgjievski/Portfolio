@@ -24,6 +24,7 @@ type Props = {
   education: Education[];
   setSelectedId: (id: SectionKey) => void;
   selectedId: SectionKey;
+  handleExperienceModalOpen: (experience: Experience) => void;
 };
 
 export default function MobileResumeView({
@@ -32,6 +33,7 @@ export default function MobileResumeView({
   education,
   setSelectedId,
   selectedId,
+  handleExperienceModalOpen,
 }: Props) {
   const renderSectionSelector = (selectedId: SectionKey) => (
     <Grid
@@ -89,6 +91,7 @@ export default function MobileResumeView({
         >
           <Paper
             elevation={3}
+            onClick={() => handleExperienceModalOpen(item)}
             sx={{
               padding: 2,
               width: "100%",
@@ -102,6 +105,7 @@ export default function MobileResumeView({
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
+              cursor: "pointer",
             }}
           >
             <Typography
@@ -153,66 +157,66 @@ export default function MobileResumeView({
       }}
     >
       {[...skills]
-      .sort((a, b) => a.number - b.number)
-      .map((skill, index) => (
-        <Grid
-          item
-          xs={12}
-          key={index}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Paper
-            elevation={3}
+        .sort((a, b) => a.number - b.number)
+        .map((skill, index) => (
+          <Grid
+            item
+            xs={12}
+            key={index}
             sx={{
-              padding: 4,
-              width: "100%",
-              maxWidth: "300px",
-              height: "100%",
-              maxHeight: "150px",
-              backgroundColor: "#25252e",
-              color: "white",
               display: "flex",
-              flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              transition: "0.3s ease-in-out",
-              "&:hover": {
-                backgroundColor: "#1e1e25",
-                transform: "scale(1.05)",
-              },
             }}
           >
-            <Image
-              src={skill.icon}
-              alt={skill.name}
-              width={0}
-              height={0}
-              style={{
-                width: "3.125rem",
-                height: "3.125rem",
-                transition: "0.3s ease-in-out",
-              }}
-            />
-            <Typography
-              variant="subtitle1"
+            <Paper
+              elevation={3}
               sx={{
-                mt: 1,
-                fontSize: "14px",
-                backgroundColor: "rgba(0, 0, 0, 0.6)",
-                padding: "4px 8px",
-                borderRadius: "4px",
+                padding: 4,
+                width: "100%",
+                maxWidth: "300px",
+                height: "100%",
+                maxHeight: "150px",
+                backgroundColor: "#25252e",
                 color: "white",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                transition: "0.3s ease-in-out",
+                "&:hover": {
+                  backgroundColor: "#1e1e25",
+                  transform: "scale(1.05)",
+                },
               }}
             >
-              {skill.name}
-            </Typography>
-          </Paper>
-        </Grid>
-      ))}
+              <Image
+                src={skill.icon}
+                alt={skill.name}
+                width={0}
+                height={0}
+                style={{
+                  width: "3.125rem",
+                  height: "3.125rem",
+                  transition: "0.3s ease-in-out",
+                }}
+              />
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  mt: 1,
+                  fontSize: "14px",
+                  backgroundColor: "rgba(0, 0, 0, 0.6)",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  color: "white",
+                }}
+              >
+                {skill.name}
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
     </Grid>
   );
 
@@ -308,7 +312,6 @@ export default function MobileResumeView({
         alignItems="center"
         sx={{
           width: "100%",
-          padding: "20px",
         }}
       >
         <Container

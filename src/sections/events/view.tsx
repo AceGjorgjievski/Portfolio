@@ -16,7 +16,7 @@ import MobileEventsView from "./mobile-events-view";
 export default function EventsView() {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const isSmUp = useResponsive("up", "sm");
 

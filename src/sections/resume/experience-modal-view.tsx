@@ -1,5 +1,12 @@
 import { Experience } from "@/types";
-import { Modal, Box, IconButton, Container, Typography } from "@mui/material";
+import {
+  Modal,
+  Box,
+  IconButton,
+  Container,
+  Typography,
+  Fade,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 type Props = {
@@ -61,25 +68,27 @@ export default function ExperienceModalView({
       onClose={handleClose}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <Box
-        sx={{
-          position: "relative",
-          width: 2000,
-          bgcolor: "#1e1e25",
-          color: "white",
-          borderRadius: "8px",
-          p: 4,
-          boxShadow: 24,
-          maxWidth: {
-            xs: "350px",
-            sm: "500px",
-            md: "700px",
-          },
-        }}
-      >
-        {renderCloseIcon}
-        <Container>{renderExperienceInfo}</Container>
-      </Box>
+      <Fade in={modalOpen} timeout={500}>
+        <Box
+          sx={{
+            position: "relative",
+            width: 2000,
+            bgcolor: "#1e1e25",
+            color: "white",
+            borderRadius: "8px",
+            p: 4,
+            boxShadow: 24,
+            maxWidth: {
+              xs: "350px",
+              sm: "500px",
+              md: "700px",
+            },
+          }}
+        >
+          {renderCloseIcon}
+          <Container>{renderExperienceInfo}</Container>
+        </Box>
+      </Fade>
     </Modal>
   );
 }

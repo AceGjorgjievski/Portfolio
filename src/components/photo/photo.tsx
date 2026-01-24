@@ -2,6 +2,7 @@ import { useResponsive } from "@/hooks";
 import { Avatar } from "@mui/material";
 import { motion } from "framer-motion";
 import { Container } from "@mui/material";
+import useStylesPhoto from "./style";
 
 type Props = {
   animate: boolean;
@@ -25,6 +26,8 @@ export default function Photo({
       ? `13 6 ${size} ${size}`
       : `33 6 ${size} ${size}`;
   const motionCircleRadius = isMdUp ? size / 1.9 - 20 : size / 1.9 - 22;
+
+  const classes = useStylesPhoto();
 
   const renderAvatar = (
     <>
@@ -69,6 +72,7 @@ export default function Photo({
           marginTop: isMdUp ? "1.5rem" : "0.7rem",
           marginLeft: "0.688rem",
         }}
+        className={classes.photo}
       >
         Empty
       </Avatar>

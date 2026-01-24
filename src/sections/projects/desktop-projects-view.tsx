@@ -7,6 +7,7 @@ import { Project } from "@/types";
 import Slider from "./slider";
 import ProjectStack from "./project-stack";
 import ProjectExternalLink from "./project-external-link";
+import useStylesProjects from "./styles";
 
 type Props = {
   activeIndex: number;
@@ -25,6 +26,7 @@ export default function DesktopProjectsView({
 }: Props) {
   const isSmUp = useResponsive("up", "sm");
   const isMdUp = useResponsive("up", "md");
+  const classes = useStylesProjects();
   return (
     <Stack
       direction="row"
@@ -43,13 +45,17 @@ export default function DesktopProjectsView({
       >
         <Container
           sx={{
-            flex: "1",
             marginTop: isMdUp ? "80px" : isSmUp ? "0px" : "",
           }}
+          className={classes.project}
         >
-          <Typography variant="h2">{activeProject.number}</Typography>
-          <Typography variant="h4">{activeProject.category} project</Typography>
-          <Typography variant="subtitle1">
+          <Typography variant="h2" sx={{ textAlign: "center" }}>
+            {activeProject.number}
+          </Typography>
+          <Typography variant="h4" sx={{ textAlign: "center" }}>
+            {activeProject.category} project
+          </Typography>
+          <Typography variant="subtitle1" sx={{ textAlign: "center" }}>
             {activeProject.description}
           </Typography>
           <ProjectStack activeProject={activeProject} />

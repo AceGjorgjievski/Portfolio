@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Event } from "@/types";
+import useStylesEvents from "./styles";
 
 type Props = {
   event: Event;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 export default function EventCard({ event, onCardClick }: Props) {
+
+  const classes = useStylesEvents();
 
   const renderEventImage = (
     <Box
@@ -115,6 +118,8 @@ export default function EventCard({ event, onCardClick }: Props) {
           "&:hover": {
             backgroundColor: "rgba(0, 255, 255, 0.1)",
             color: "#00ffff",
+            boxShadow: "0 0 35px -10px rgba(34,197,94,0.45)",
+            borderColor: "rgba(34,197,94,0.6)",
           },
         }}
       >
@@ -125,14 +130,7 @@ export default function EventCard({ event, onCardClick }: Props) {
 
   return (
     <Card
-      sx={{
-        width: "285px",
-        backgroundColor: "#1e1e25",
-        color: "white",
-        height: "300px",
-        display: "flex",
-        flexDirection: "column",
-      }}
+      className={classes.event}
     >
       {renderEventImage}
 

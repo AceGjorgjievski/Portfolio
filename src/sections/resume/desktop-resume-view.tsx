@@ -7,6 +7,7 @@ import { Container, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Education } from "@/types/education";
 import { Experience } from "@/types/experience";
 import { Skill } from "@/types/skill";
+import useStylesResume from "./styles";
 
 type SectionKey = "experience" | "skills" | "education";
 
@@ -35,7 +36,7 @@ export default function DesktopResumeView({
   selectedId,
   handleExperienceModalOpen,
 }: Props) {
-  
+  const classes = useStylesResume();
   const selectedIdTitle =
     selectedId === "experience"
       ? "My Experience"
@@ -46,7 +47,7 @@ export default function DesktopResumeView({
           : "My Events";
 
   const renderExperience = (experience: Experience[]) => (
-    <Grid container spacing={2} sx={{ width: "100%" }}>
+    <Grid container spacing={2} sx={{ width: "100%", marginTop: "2px" }}>
       {experience.map((item, index) => (
         <Grid
           item
@@ -64,15 +65,9 @@ export default function DesktopResumeView({
               width: "100%",
               maxWidth: "300px",
               height: "8.75rem",
-              backgroundColor: "#25252e",
-              color: "white",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
               cursor: "pointer",
             }}
+            className={classes.paper}
           >
             <Typography
               variant="body2"
@@ -103,7 +98,7 @@ export default function DesktopResumeView({
   );
 
   const renderSkills = (skills: Skill[]) => (
-    <Grid container spacing={2} sx={{ width: "100%" }}>
+    <Grid container spacing={2} sx={{ width: "100%", marginTop: "2px" }}>
       {[...skills]
         .sort((a, b) => a.number - b.number)
         .map((skill, index) => (
@@ -120,25 +115,12 @@ export default function DesktopResumeView({
               sx={{
                 position: "relative",
                 padding: 4,
-                width: "100%",
-                maxWidth: "300px",
                 maxHeight: "150px",
-                backgroundColor: "#25252e",
-                color: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                transition: "0.3s ease-in-out",
-                "&:hover": {
-                  backgroundColor: "#1e1e25",
-                  transform: "scale(1.05)",
-                },
                 "&:hover .hover-text": {
                   opacity: 1,
                 },
               }}
+              className={classes.paper}
             >
               <Image
                 src={skill.icon}
@@ -184,6 +166,7 @@ export default function DesktopResumeView({
         spacing={2}
         sx={{
           width: "100%",
+          marginTop: "2px",
         }}
       >
         {education.map((item, index) => (
@@ -202,18 +185,10 @@ export default function DesktopResumeView({
               elevation={3}
               sx={{
                 padding: 2,
-                width: "100%",
-                maxWidth: "300px",
                 height: "100%",
                 maxHeight: "150px",
-                backgroundColor: "#25252e",
-                color: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
               }}
+              className={classes.paper}
             >
               <Typography
                 variant="body2"
@@ -272,20 +247,18 @@ export default function DesktopResumeView({
           key={item}
           onClick={() => setSelectedId(item)}
           sx={{
-            border: "2px solid #22c55e",
-            padding: "15px",
-            cursor: "pointer",
             backgroundColor: selectedId === item ? "green" : "",
-            borderRadius: "8px",
             my: "10px",
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-              transition: "0.3s",
-            },
           }}
+          className={classes.sectionTitle}
         >
-          {SECTION_LABELS[item]}
+          <Typography
+            sx={{
+              my: "1px",
+            }}
+          >
+            {SECTION_LABELS[item]}
+          </Typography>
         </Grid>
       ))}
     </Grid>

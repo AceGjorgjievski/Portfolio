@@ -7,6 +7,7 @@ import { Container, Grid, Paper, Stack, Typography } from "@mui/material";
 import { Education } from "@/types/education";
 import { Experience } from "@/types/experience";
 import { Skill } from "@/types/skill";
+import useStylesResume from "./styles";
 
 type SectionKey = "experience" | "skills" | "education";
 
@@ -35,6 +36,8 @@ export default function MobileResumeView({
   selectedId,
   handleExperienceModalOpen,
 }: Props) {
+  const classes = useStylesResume();
+
   const renderSectionSelector = (selectedId: SectionKey) => (
     <Grid
       container
@@ -49,20 +52,18 @@ export default function MobileResumeView({
           key={item}
           onClick={() => setSelectedId(item)}
           sx={{
-            border: "2px solid #22c55e",
-            padding: "15px",
-            cursor: "pointer",
             backgroundColor: selectedId === item ? "green" : "",
-            borderRadius: "8px",
             my: "10px",
-            "&:hover": {
-              backgroundColor: "green",
-              color: "white",
-              transition: "0.3s",
-            },
           }}
+          className={classes.sectionTitle}
         >
-          {SECTION_LABELS[item]}
+          <Typography
+            sx={{
+              my: "1px",
+            }}
+          >
+            {SECTION_LABELS[item]}
+          </Typography>
         </Grid>
       ))}
     </Grid>
@@ -94,19 +95,11 @@ export default function MobileResumeView({
             onClick={() => handleExperienceModalOpen(item)}
             sx={{
               padding: 2,
-              width: "100%",
-              maxWidth: "300px",
               height: "100%",
               maxHeight: "150px",
-              backgroundColor: "#25252e",
-              color: "white",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
               cursor: "pointer",
             }}
+            className={classes.paper}
           >
             <Typography
               variant="body2"
@@ -172,23 +165,10 @@ export default function MobileResumeView({
               elevation={3}
               sx={{
                 padding: 4,
-                width: "100%",
-                maxWidth: "300px",
                 height: "100%",
                 maxHeight: "150px",
-                backgroundColor: "#25252e",
-                color: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                transition: "0.3s ease-in-out",
-                "&:hover": {
-                  backgroundColor: "#1e1e25",
-                  transform: "scale(1.05)",
-                },
               }}
+              className={classes.paper}
             >
               <Image
                 src={skill.icon}
@@ -243,18 +223,10 @@ export default function MobileResumeView({
               elevation={3}
               sx={{
                 padding: 2,
-                width: "100%",
-                maxWidth: "300px",
                 height: "100%",
                 maxHeight: "150px",
-                backgroundColor: "#25252e",
-                color: "white",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
               }}
+              className={classes.paper}
             >
               <Typography
                 variant="body2"

@@ -16,7 +16,7 @@ export default function ProjectStack({ activeProject }: Props) {
         color: "#22c55e",
         my: "10px",
         flexWrap: "wrap",
-        justifyContent: "flex-start",
+        justifyContent: "center",
       }}
     >
       {activeProject.stack.map((item, index) => {

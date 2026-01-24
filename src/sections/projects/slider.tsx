@@ -71,9 +71,13 @@ export default function Slider({
               <Image
                 src={project.picture}
                 alt={project.title}
-                layout="fill"
-                objectFit="cover"
-                style={{ borderRadius: "8px" }}
+                fill
+                priority={index === 0}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                style={{
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                }}
               />
             </Box>
           </SwiperSlide>

@@ -7,6 +7,7 @@ import { Project } from "@/types";
 import Slider from "./slider";
 import ProjectStack from "./project-stack";
 import ProjectExternalLink from "./project-external-link";
+import useStylesProjects from "./styles";
 
 type Props = {
   activeIndex: number;
@@ -24,6 +25,7 @@ export default function MobileProjectsView({
   setActiveIndex,
 }: Props) {
   const isSmUp = useResponsive("up", "sm");
+  const classes = useStylesProjects();
 
   return (
     <Stack
@@ -39,7 +41,7 @@ export default function MobileProjectsView({
             padding: "20px",
             borderRadius: "8px",
             color: "white",
-            marginBottom: "40px",
+            marginBottom: "60px",
           }}
         >
           <Slider
@@ -50,24 +52,20 @@ export default function MobileProjectsView({
             isSmUp={isSmUp}
           />
         </Container>
-        <Container
-          sx={{
-            padding: "20px",
-            borderRadius: "8px",
-            color: "white",
-          }}
-        >
-          <Typography variant="h2" sx={{textAlign: 'center'}}>{activeProject.number}</Typography>
+        <Container className={classes.projectMobile}>
+          <Typography variant="h2" sx={{ textAlign: "center" }}>
+            {activeProject.number}
+          </Typography>
           <Typography
             variant="h4"
             sx={{
               my: "10px",
-              textAlign: 'center'
+              textAlign: "center",
             }}
           >
             {activeProject.category} project
           </Typography>
-          <Typography variant="subtitle1" sx={{ mb: 2, textAlign: 'center' }}>
+          <Typography variant="subtitle1" sx={{ mb: 2, textAlign: "center" }}>
             {activeProject.description}
           </Typography>
           <ProjectStack activeProject={activeProject} />

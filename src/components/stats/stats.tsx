@@ -3,12 +3,15 @@ import Container from "@mui/material/Container";
 import CountUp from "react-countup";
 import { Typography, Grid } from "@mui/material";
 import { GitHubStats } from "@/types/github";
+import useStylesStatsItems from "./style";
 
 type Props = {
   githubStats: GitHubStats;
 };
 
 export default function Stats({ githubStats }: Props) {
+  const classes = useStylesStatsItems();
+
   const stats = [
     { name: "Years of experience", value: 1 },
     { name: "Projects completed", value: 10 },
@@ -26,21 +29,16 @@ export default function Stats({ githubStats }: Props) {
           padding: "20px 10px",
         }}
       >
-        <Grid container justifyContent="center">
+        <Grid container justifyContent="center" gap={2}>
           {stats.map((stat, index) => {
             return (
               <Grid
                 item
                 xs={6}
                 sm={6}
-                md={3}
+                md={4}
                 key={index}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
+                className={classes.statItem}
               >
                 <Typography
                   variant="h3"
@@ -54,11 +52,7 @@ export default function Stats({ githubStats }: Props) {
                     },
                   }}
                 >
-                  <CountUp
-                    end={stat.value}
-                    duration={3.7}
-                    delay={2}
-                  />
+                  <CountUp end={stat.value} duration={3.7} delay={2} />
                 </Typography>
                 <Typography
                   variant="subtitle2"

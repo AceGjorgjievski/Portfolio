@@ -5,14 +5,17 @@ import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { Project } from "@/types";
 
 import BitbucketIcon from "@/assets/icons/bitbucket-icon";
-
+import useStylesProjects from "./styles";
 
 type Props = {
   activeProject: Project;
 };
 
 export default function ProjectExternalLink({ activeProject }: Props) {
+  const classes = useStylesProjects();
+
   if (!activeProject.links?.web?.length) return null;
+
   return (
     <Container
       sx={{
@@ -36,8 +39,8 @@ export default function ProjectExternalLink({ activeProject }: Props) {
         const tooltipTitle = isGitHub
           ? "GitHub Repo"
           : isBitBucket
-          ? "Bitbucket Repo"
-          : "Live Demo";
+            ? "Bitbucket Repo"
+            : "Live Demo";
 
         return (
           <Link
@@ -46,18 +49,12 @@ export default function ProjectExternalLink({ activeProject }: Props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Tooltip
-              title={tooltipTitle}
-              leaveDelay={150}
-            >
+            <Tooltip title={tooltipTitle} leaveDelay={150}>
               <IconButton
                 sx={{
                   color: "#22c55e",
-                  "&:hover": {
-                    backgroundColor: "green",
-                    color: "white",
-                  },
                 }}
+                className={classes.externalLinks}
               >
                 {icon}
               </IconButton>

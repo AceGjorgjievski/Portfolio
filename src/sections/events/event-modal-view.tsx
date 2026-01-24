@@ -7,6 +7,7 @@ import {
   Modal,
   Stack,
   Typography,
+  Fade,
 } from "@mui/material";
 import { Event } from "@/types";
 import CloseIcon from "@mui/icons-material/Close";
@@ -21,6 +22,7 @@ import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 import { JSX, useState } from "react";
+import useStylesEvents from "./styles";
 
 type Props = {
   selectedEvent: Event | null;
@@ -46,6 +48,7 @@ export default function EventModalView({
   const [activeLinks, setActiveLinks] = useState<string[]>([]);
 
   const open = Boolean(anchorEl);
+  const classes = useStylesEvents();
 
   const hasLinks =
     selectedEvent?.links && Object.keys(selectedEvent.links).length > 0;
@@ -124,13 +127,7 @@ export default function EventModalView({
                 component="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{
-                  color: "white",
-                  "&:hover": {
-                    color: "#22c55e",
-                    transform: "scale(1.2)",
-                  },
-                }}
+                className={classes.eventLink}
               >
                 {linkIcons[key]}
               </IconButton>
@@ -161,32 +158,34 @@ export default function EventModalView({
       onClose={handleClose}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <Box
-        sx={{
-          position: "relative",
-          width: 2000,
-          bgcolor: "#1e1e25",
-          color: "white",
-          borderRadius: "8px",
-          p: 4,
-          boxShadow: 24,
-          maxWidth: {
-            xs: "350px",
-            sm: "500px",
-            md: "700px",
-          },
-        }}
-      >
-        {renderCloseIcon}
-        {selectedEvent && (
-          <>
-            <Container>
-              {renderEventInfo(selectedEvent)}
-              {renderEventLinks(hasLinks)}
-            </Container>
-          </>
-        )}
-      </Box>
+      <Fade in={modalOpen} timeout={500}>
+        <Box
+          sx={{
+            position: "relative",
+            width: 2000,
+            bgcolor: "#1e1e25",
+            color: "white",
+            borderRadius: "8px",
+            p: 4,
+            boxShadow: 24,
+            maxWidth: {
+              xs: "350px",
+              sm: "500px",
+              md: "700px",
+            },
+          }}
+        >
+          {renderCloseIcon}
+          {selectedEvent && (
+            <>
+              <Container>
+                {renderEventInfo(selectedEvent)}
+                {renderEventLinks(hasLinks)}
+              </Container>
+            </>
+          )}
+        </Box>
+      </Fade>
     </Modal>
   );
 }

@@ -33,6 +33,8 @@ export default function HeaderDesktopView() {
               }),
               "&:hover": {
                 color: "#22c55e",
+                boxShadow: "0 0 35px -10px rgba(34,197,94,0.45)",
+                borderColor: "rgba(34,197,94,0.6)",
               },
             }}
           >

@@ -124,6 +124,14 @@ export default function LoginView() {
           {error}
         </Typography>
       )}
+      <Typography
+        sx={{
+          fontSize: "4px",
+          mt: 3,
+        }}
+      >
+        pazi shto pishes, kamera to snima :)
+      </Typography>
     </>
   );
 
@@ -149,7 +157,7 @@ export default function LoginView() {
         }}
       >
         <Typography variant="h6" sx={{ color: "cyan", marginBottom: 2 }}>
-          Hah, nice u found sth :D
+          Hah, u found sth, nice :D
         </Typography>
         <Box
           component="form"

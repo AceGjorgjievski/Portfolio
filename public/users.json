@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Alice Johnson",
+        "age": 29,
+        "category": "sport"
+    },
+    {
+        "id": 2,
+        "name": "Bob Smith",
+        "age": 34,
+        "category": "medicine"
+    },
+    {
+        "id": 3,
+        "name": "Charlie Brown",
+        "age": 21,
+        "category": "school"
+    },
+    {
+        "id": 4,
+        "name": "Diana Prince",
+        "age": 27,
+        "category": "sport"
+    },
+    {
+        "id": 5,
+        "name": "Ethan Hunt",
+        "age": 40,
+        "category": "medicine"
+    },
+    {
+        "id": 6,
+        "name": "Fiona Gallagher",
+        "age": 19,
+        "category": "school"
+    }
+]

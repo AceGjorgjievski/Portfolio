@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import { JSX, useEffect, useRef } from "react";
 
 import Image from "next/image";
 
@@ -37,6 +37,7 @@ export default function DesktopResumeView({
   handleExperienceModalOpen,
 }: Props) {
   const classes = useStylesResume();
+  const scrollRef = useRef<HTMLDivElement>(null);
   const selectedIdTitle =
     selectedId === "experience"
       ? "My Experience"
@@ -45,6 +46,12 @@ export default function DesktopResumeView({
         : selectedId === "education"
           ? "My Education"
           : "My Events";
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [selectedId]);
 
   const renderExperience = (experience: Experience[]) => (
     <Grid container spacing={2} sx={{ width: "100%", marginTop: "2px" }}>
@@ -335,6 +342,7 @@ export default function DesktopResumeView({
                 </Typography>
               </Container>
               <Container
+                ref={scrollRef}
                 sx={{
                   height: "320px",
                   overflowY: "auto",
